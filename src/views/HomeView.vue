@@ -2,8 +2,6 @@
 
 <template>
   <main>
-    <RouterView />
+    <h1>Home page</h1>
   </main>
 </template>
-
-<style scoped></style>
