@@ -1,0 +1,86 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: color(dark);
+  color: color(light);
+  &-brand a {
+    color: color(light);
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+
+  &-burger {
+    display: none;
+    flex-direction: column;
+    padding: 8px 0;
+    cursor: pointer;
+
+    %span-design {
+      height: 2px;
+      width: 25px;
+      background-color: color(light);
+      display: block;
+      pointer-events: none;
+    }
+
+    span {
+      @extend %span-design;
+      position: relative;
+
+      &::before,
+      &::after {
+        @extend %span-design;
+        content: '';
+        position: absolute;
+        left: 0;
+      }
+
+      &::before {
+        top: -7px;
+      }
+
+      &::after {
+        top: 7px;
+      }
+    }
+  }
+
+  &-menu {
+    display: flex;
+    gap: 1rem;
+
+    a {
+      color: color(light);
+      text-decoration: none;
+    }
+  }
+
+  @media (max-width: breakpoint(md)) {
+    &-burger {
+      display: flex;
+    }
+
+    &-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background-color: color(dark);
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      text-align: center;
+
+      &.is-active {
+        display: flex;
+      }
+
+      a {
+        padding: 1rem;
+        border-top: 1px solid color(dark);
+      }
+    }
+  }
+}
