@@ -40,7 +40,6 @@
       &::before {
         top: -7px;
       }
-
       &::after {
         top: 7px;
       }
@@ -60,6 +59,31 @@
   @media (max-width: breakpoint(md)) {
     &-burger {
       display: flex;
+
+      span {
+        transition: transform 0.3s ease-in-out;
+
+        &::before,
+        &::after {
+          transition:
+            top 0.3s ease-in-out,
+            transform 0.3s ease-in-out;
+        }
+      }
+
+      &.is-active {
+        span {
+          transform: rotate(45deg);
+          &::after {
+            top: 0;
+            transform: rotate(90deg);
+          }
+          &::before {
+            top: 0;
+            transform: rotate(90deg);
+          }
+        }
+      }
     }
 
     &-menu {
