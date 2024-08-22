@@ -10,6 +10,16 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/connexion',
+      name: 'Login',
+      component: () => import('@/components/auth/LoginForm.vue')
+    },
+    {
+      path: '/inscription',
+      name: 'Register',
+      component: () => import('@/components/auth/RegisterForm.vue')
+    },
+    {
       path: '/:catchAll(.*)*',
       name: 'NotFound',
       component: () => import('@/views/NotFoundView.vue')

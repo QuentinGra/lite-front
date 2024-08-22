@@ -13,10 +13,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@formkit/i18n": "^1.6.5",
+    "@formkit/vue": "^1.6.5",
+    "@formkit/zod": "^1.6.5",
     "eslint": "^8.56.0",
     "pinia": "^2.2.1",
     "vue": "^3.4.37",
-    "vue-router": "^4.4.3"
+    "vue-router": "^4.4.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.10.4",
@@ -32,6 +36,7 @@
     "sass": "^1.77.8",
     "typescript": "~5.5.4",
     "vite": "^5.4.0",
+    "vite-plugin-mkcert": "^1.17.6",
     "vite-plugin-vue-devtools": "^7.3.8",
     "vue-tsc": "^2.0.29"
   }
