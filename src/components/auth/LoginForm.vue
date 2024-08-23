@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
-import { z } from 'zod'
-import router from '@/router'
 import { login } from '@/services/login.api'
+import { loginSchema } from '@/schemas/login.schema'
+import type { LoginValues } from '@/interfaces/login.interface'
 
-const loginSchema = z.object({
-  username: z.string().email({ message: 'Email invalide' }),
-  password: z.string().min(8, { message: 'Mot de passe invalide' })
-})
+const errorMessage = ref('')
+const router = useRouter()
 
-const errorMessage: Ref<string> = ref('')
-
-const [zodPlugin, submitHandler] = createZodPlugin(loginSchema, async (values) => {
+const handleLogin = async (values: LoginValues) => {
   try {
     const response = await login(values.username, values.password)
     if (response) {
@@ -26,19 +22,28 @@ const [zodPlugin, submitHandler] = createZodPlugin(loginSchema, async (values) =
       errorMessage.value = 'Une erreur est survenue'
     }
   }
-})
+}
+
+const [zodPlugin, submitHandler] = createZodPlugin(loginSchema, handleLogin)
 </script>
 
 <template>
-  <h1>Connexion</h1>
-  <div v-if="errorMessage">{{ errorMessage }}</div>
-  <FormKit type="form" submit-label="Connexion" :plugins="[zodPlugin]" @submit="submitHandler">
-    <FormKit type="email" name="username" validation="required" help="Entrer votre adresse mail" />
-    <FormKit
-      type="password"
-      name="password"
-      validation="required"
-      help="Entrer votre mot de passe"
-    />
-  </FormKit>
+  <div class="container-login">
+    <h2 class="form-title">Connexion</h2>
+    <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
+    <FormKit type="form" submit-label="Connexion" :plugins="[zodPlugin]" @submit="submitHandler">
+      <FormKit
+        type="email"
+        name="username"
+        validation="required"
+        help="Entrer votre adresse mail"
+      />
+      <FormKit
+        type="password"
+        name="password"
+        validation="required"
+        help="Entrer votre mot de passe"
+      />
+    </FormKit>
+  </div>
 </template>

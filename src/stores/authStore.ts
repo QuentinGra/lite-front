@@ -9,5 +9,8 @@ export const useAuthStore = defineStore('auth', {
     setUser(user: userInterface) {
       this.user = user
     }
+  },
+  getters: {
+    isUserDefined: (state) => state.user !== null
   }
 })
