@@ -11,8 +11,16 @@ const router = useRouter()
 
 const handleRegister = async (values: RegisterValues) => {
   try {
-    const { confirmationPassword, ...registerValues } = values
-    const response = await register(registerValues)
+    const { ...registerValues } = values
+    console.log(registerValues)
+
+    const response = await register(
+      registerValues.email,
+      registerValues.password,
+      registerValues.firstName,
+      registerValues.lastName,
+      registerValues.birthDate
+    )
     if (response) {
       router.push('/connexion')
     }

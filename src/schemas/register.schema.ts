@@ -13,7 +13,15 @@ export const registerSchema = z
     confirmationPassword: z.string(),
     firstName: z.string().max(255, { message: 'Prénom invalide' }),
     lastName: z.string().max(255, { message: 'Nom invalide' }),
-    birthDate: z.date({ message: 'Date de naissance invalide' })
+    birthDate: z
+      .string()
+      .transform((str) => {
+        const [year, month, day] = str.split('-').map(Number)
+        return new Date(year, month - 1, day)
+      })
+      .refine((date) => !isNaN(date.getTime()), {
+        message: 'Date de naissance invalide'
+      })
   })
   .refine((data) => data.password === data.confirmationPassword, {
     message: 'Les mots de passe ne correspondent pas',
