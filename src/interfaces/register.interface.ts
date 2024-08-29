@@ -1,8 +1,8 @@
 export interface RegisterValues {
-  username: string
-  password: string
   email: string
-  firstName: string
-  lastName: string
-  birthDate: Date
+  password: string
+  confirmationPassword: string
+  firstName: string | null
+  lastName: string | null
+  birthDate: Date | null
 }
