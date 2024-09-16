@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
-import { login } from '@/services/login.api'
+import { login } from '@/api/login.api'
 import { loginSchema } from '@/schemas/login.schema'
 import type { LoginValues } from '@/interfaces/login.interface'
 

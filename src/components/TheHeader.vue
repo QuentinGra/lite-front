@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useAuthStore } from '@/stores/authStore'
+import { ref } from 'vue'
+import { useAuth } from '@/composables/useAuth'
 
 const isMenuOpen = ref(false)
-const authStore = useAuthStore()
-
-const isConnected = computed(() => authStore.isUserDefined)
+const { isUserDefined, logout } = useAuth()
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -23,8 +21,9 @@ const toggleMenu = () => {
       </div>
       <div :class="['navbar-menu', { 'is-active': isMenuOpen }]">
         <RouterLink to="/">Acceuil</RouterLink>
-        <RouterLink v-if="!isConnected" to="/connexion">Connexion</RouterLink>
-        <RouterLink v-if="!isConnected" to="/inscription">Inscription</RouterLink>
+        <RouterLink v-if="!isUserDefined" to="/connexion">Connexion</RouterLink>
+        <RouterLink v-if="!isUserDefined" to="/inscription">Inscription</RouterLink>
+        <button v-if="isUserDefined" @click="logout">Déconnexion</button>
       </div>
     </nav>
   </header>

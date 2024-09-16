@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
-import { register } from '@/services/register.api'
+import { register } from '@/api/register.api'
 import { registerSchema } from '@/schemas/register.schema'
 import type { RegisterValues } from '@/interfaces/register.interface'
 

@@ -17,7 +17,8 @@ export const registerSchema = z
       .string()
       .transform((str) => {
         const [year, month, day] = str.split('-').map(Number)
-        return new Date(year, month - 1, day)
+        // TODO: Demander à Pierre pourquoi il faut mettre -1 et +1
+        return new Date(year, month - 1, day + 1)
       })
       .refine((date) => !isNaN(date.getTime()), {
         message: 'Date de naissance invalide'

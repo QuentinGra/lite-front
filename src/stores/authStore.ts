@@ -8,6 +8,9 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     setUser(user: userInterface) {
       this.user = user
+    },
+    clearUser() {
+      this.user = null
     }
   },
   getters: {
