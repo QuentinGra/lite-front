@@ -21,9 +21,8 @@ const handleRegister = async (values: RegisterValues) => {
       registerValues.lastName,
       registerValues.birthDate
     )
-    if (response) {
-      router.push('/connexion')
-    }
+
+    if (response) router.push('/connexion')
   } catch (error) {
     if (error instanceof Error) {
       errorMessage.value = error.message

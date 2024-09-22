@@ -15,7 +15,6 @@ export const register = async (
     birthDate: birthDate
   }
 
-  console.log(body)
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {

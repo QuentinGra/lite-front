@@ -2,19 +2,18 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
-import { login } from '@/api/login.api'
 import { loginSchema } from '@/schemas/login.schema'
 import type { LoginValues } from '@/interfaces/login.interface'
+import { useAuth } from '@/composables/useAuth'
 
 const errorMessage = ref('')
 const router = useRouter()
+const { login } = useAuth()
 
 const handleLogin = async (values: LoginValues) => {
   try {
-    const response = await login(values.username, values.password)
-    if (response) {
-      router.push('/')
-    }
+    await login(values.username, values.password)
+    router.push('/')
   } catch (error) {
     if (error instanceof Error) {
       errorMessage.value = error.message

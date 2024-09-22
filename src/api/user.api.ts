@@ -1,25 +1,27 @@
 import { useAuthStore } from '@/stores/authStore'
+import type { userWithTimestampsInterface } from '@/interfaces/user.interface'
 
 const API_URL = `${import.meta.env.VITE_API_URL_LOCAL}/api/user`
 
-// TODO: Modify the fetch for getting user info from the server with the token
+interface fetchError {
+  message: string
+}
 
-export const fetchUserInfo = async (token: string) => {
-  const response = await fetch(API_URL, {
+export const fetchUserInfo = async (userId: string): Promise<userWithTimestampsInterface> => {
+  const response = await fetch(`${API_URL}/${userId}`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
     credentials: 'include'
   })
 
   if (!response.ok) {
-    const error = await response.json()
+    const error: fetchError = await response.json()
     throw new Error(error.message)
   }
 
-  const data = await response.json()
+  const data: userWithTimestampsInterface = await response.json()
   useAuthStore().setUser(data)
   return data
 }

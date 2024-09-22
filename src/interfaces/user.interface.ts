@@ -6,3 +6,8 @@ export interface userInterface {
   birthDate: Date
   roles: string[]
 }
+
+export interface userWithTimestampsInterface extends userInterface {
+  createdAt: Date
+  updatedAt: Date
+}
