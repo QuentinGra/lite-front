@@ -8,12 +8,16 @@ import { useAuth } from '@/composables/useAuth'
 
 const errorMessage = ref('')
 const router = useRouter()
-const { login } = useAuth()
+const { login, hasRole } = useAuth()
 
 const handleLogin = async (values: LoginValues) => {
   try {
     await login(values.username, values.password)
-    router.push('/')
+    if (hasRole('ROLE_ADMIN')) {
+      router.push('/admin-panel')
+    } else {
+      router.push('/')
+    }
   } catch (error) {
     if (error instanceof Error) {
       errorMessage.value = error.message
