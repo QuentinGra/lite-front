@@ -7,6 +7,8 @@ import { loginUser } from '@/api/login.api'
 import type { userInterface } from '@/interfaces/user.interface'
 import { useRouter } from 'vue-router'
 
+// TODO: Reprendre le code de useAuth ne plus utiliser les methodes de cookie.utils.ts
+
 /**
  * A composable function to handle user authentication.
  *

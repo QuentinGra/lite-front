@@ -5,7 +5,7 @@ import CategoryList from '@/components/admin/CategoryList.vue'
 const router = useRouter()
 
 const editCategory = (id: number) => {
-  router.push({ name: 'AdminCategoryEdit', params: { id } })
+  router.push({ name: 'AdminCategoryEdit', params: { id: id } })
 }
 
 const deleteCategory = (id: number) => {

@@ -7,6 +7,7 @@ interface fetchError {
   message: string
 }
 
+// TODO: Modifier le fetch le faire sur /api/user/me
 export const fetchUserInfo = async (userId: string): Promise<userWithTimestampsInterface> => {
   const response = await fetch(`${API_URL}/${userId}`, {
     method: 'GET',
