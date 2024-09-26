@@ -1,15 +1,14 @@
 import { useAuthStore } from '@/stores/authStore'
 import type { userWithTimestampsInterface } from '@/interfaces/user.interface'
 
-const API_URL = `${import.meta.env.VITE_API_URL_LOCAL}/api/user`
+const API_URL = `${import.meta.env.VITE_API_URL_LOCAL}/api/user/me`
 
 interface fetchError {
   message: string
 }
 
-// TODO: Modifier le fetch le faire sur /api/user/me
-export const fetchUserInfo = async (userId: string): Promise<userWithTimestampsInterface> => {
-  const response = await fetch(`${API_URL}/${userId}`, {
+export const fetchUserInfo = async (): Promise<userWithTimestampsInterface> => {
+  const response = await fetch(API_URL, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-
 // FIXME: Le bouton edit ne marche pas
 
 const props = defineProps({

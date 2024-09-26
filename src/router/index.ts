@@ -59,7 +59,7 @@ const router = createRouter({
 router.beforeEach(async (to, _, next) => {
   const { isUserDefined, hasRole, checkAuth } = useAuth()
 
-  // Check user authentication
+  // Check if the user is defined
   await checkAuth()
 
   if (to.meta.requiresAuth && !isUserDefined.value) {

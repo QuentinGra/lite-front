@@ -3,9 +3,9 @@ export function getCookie(name: string): string | undefined {
   return cookie ? cookie.split('=')[1] : undefined
 }
 
-export function setCookie(name: string, value: string, days: number): void {
+export function setCookie(name: string, value: string, seconds: number): void {
   const date = new Date()
-  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+  date.setTime(date.getTime() + seconds * 1000)
   document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`
 }
 
