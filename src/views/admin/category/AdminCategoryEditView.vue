@@ -1,27 +1,21 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
-const route = useRoute()
-const categoryId = route.params.id
-const category = ref({ id: categoryId, name: '' })
+const router = useRouter()
 
 onMounted(() => {
-  // Fetch category data based on categoryId
-  // For now, we'll just simulate it
-  category.value.name = `Category ${categoryId}`
+  // TODO: Fetch category data based on categoryId
 })
 
 const saveCategory = () => {
-  // Save category logic
-  console.log('Category saved:', category.value)
+  router.push({ name: 'AdminCategory' })
 }
 </script>
 
 <template>
   <div>
     <h1>Edit Category</h1>
-    <input v-model="category.name" />
     <button @click="saveCategory">Save</button>
   </div>
 </template>
