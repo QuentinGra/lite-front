@@ -7,8 +7,11 @@ $colors: (
   primary: #007bff,
   secondary: #6c757d,
   success: #28a745,
+  dark-success: #218838,
   danger: #dc3545,
+  dark-danger: #c82333,
   warning: #ffc107,
+  dark-warning: #e0a800,
   info: #17a2b8,
   light: #f8f9fa,
   dark: #343a40
@@ -22,5 +25,18 @@ $breakpoints: (
   xl: 1200px
 );
 
-// border-radius
-$border-radius: 0.25rem;
+// Border-radius
+$border-radius: (
+  default: 5px,
+  medium: 10px
+);
+
+// Shadows
+
+// Font sizes
+$font-sizes: (
+  base: 1rem,
+  medium: 1.25rem,
+  large: 1.5rem,
+  x-large: 2rem
+);

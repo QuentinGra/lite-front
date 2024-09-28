@@ -5,6 +5,7 @@
   padding: 1rem;
   background-color: color(dark);
   color: color(light);
+
   &-brand a {
     color: color(light);
     text-decoration: none;
@@ -53,6 +54,24 @@
     a {
       color: color(light);
       text-decoration: none;
+      position: relative;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: currentColor;
+        transition: width 0.3s ease-in-out;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
     }
   }
 
@@ -91,14 +110,27 @@
       flex-direction: column;
       gap: 0;
       background-color: color(dark);
+      z-index: 1;
       position: absolute;
       top: 60px;
       right: 0;
       width: 100%;
+      height: calc(100vh - 60px);
       text-align: center;
+      border-top: 1px solid color(light);
 
       &.is-active {
         display: flex;
+
+        a {
+          &::after {
+            width: 0; // Reset the underline width in mobile mode
+          }
+
+          &:hover::after {
+            width: 0; // Disable the underline animation in mobile mode
+          }
+        }
       }
 
       a {

@@ -1,0 +1,46 @@
+.button {
+  &-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  &-create {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: font-size(base);
+    border-radius: border-radius(default);
+    border: none;
+    color: color(light);
+    background-color: color(success);
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: color(dark-success);
+    }
+  }
+
+  &-edit {
+    @extend .button-create;
+    margin-right: 1rem;
+    background-color: color(warning);
+    cursor: pointer;
+
+    &:hover {
+      background-color: color(dark-warning);
+    }
+  }
+
+  &-delete {
+    @extend .button-create;
+    background-color: color(danger);
+    cursor: pointer;
+
+    &:hover {
+      background-color: color(dark-danger);
+    }
+  }
+}

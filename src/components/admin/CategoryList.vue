@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import CategoryItem from '@/components/admin/CategoryItem.vue'
 
 const router = useRouter()
+
+// onMounted(() => {
+//   // TODO: Fetch category data
+// })
 
 const categories = ref([
   { id: 1, name: 'Category 1' },
@@ -21,13 +24,21 @@ const deleteCategory = (id: number): void => {
 </script>
 
 <template>
-  <ul>
-    <CategoryItem
-      v-for="category in categories"
-      :key="category.id"
-      :category="category"
-      @edit="editCategory"
-      @delete="deleteCategory"
-    />
-  </ul>
+  <table class="table-admin">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="category in categories" :key="category.id">
+        <td>{{ category.name }}</td>
+        <td>
+          <button @click="editCategory(category.id)" class="button-edit">Edit</button>
+          <button @click="deleteCategory(category.id)" class="button-delete">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>

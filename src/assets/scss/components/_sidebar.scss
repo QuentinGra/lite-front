@@ -37,7 +37,11 @@
 
   .content {
     flex: 1;
-    padding: 15px;
+    padding: 1rem;
+
+    @media (min-width: breakpoint(md)) {
+      padding: 2rem;
+    }
   }
 
   button {

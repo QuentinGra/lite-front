@@ -30,13 +30,13 @@ const routes = [
         component: () => import('@/views/admin/category/AdminCategoryView.vue')
       },
       {
-        path: 'category/:id/edit',
+        path: 'categorie/:id/modifier',
         name: 'AdminCategoryEdit',
         component: () => import('@/views/admin/category/AdminCategoryEditView.vue'),
         props: true
       },
       {
-        path: 'category/create',
+        path: 'categorie/creer',
         name: 'AdminCategoryCreate',
         component: () => import('@/views/admin/category/AdminCategoryCreateView.vue')
       }

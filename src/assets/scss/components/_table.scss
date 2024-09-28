@@ -1,0 +1,37 @@
+.table {
+  &-admin {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: border-radius(medium);
+    overflow: hidden;
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f4f4f4;
+      text-align: left;
+    }
+
+    thead th:first-child {
+      border-top-left-radius: border-radius(medium);
+    }
+
+    thead th:last-child {
+      border-top-right-radius: border-radius(medium);
+    }
+
+    tbody tr:last-child td:first-child {
+      border-bottom-left-radius: border-radius(medium);
+    }
+
+    tbody tr:last-child td:last-child {
+      border-bottom-right-radius: border-radius(medium);
+    }
+  }
+}
