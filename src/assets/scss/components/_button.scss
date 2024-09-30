@@ -1,11 +1,18 @@
 .button {
   &-container {
-    display: flex;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
     margin-bottom: 10px;
+
+    @media (min-width: breakpoint(lg)) {
+      grid-template-columns: 1.8fr 1fr auto;
+    }
   }
 
   &-create {
+    grid-column: 3;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -20,6 +27,11 @@
 
     &:hover {
       background-color: color(dark-success);
+    }
+
+    @media (min-width: breakpoint(lg)) {
+      width: 150px;
+      justify-self: end;
     }
   }
 

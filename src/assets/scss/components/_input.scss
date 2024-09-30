@@ -1,0 +1,26 @@
+.search {
+  &-label {
+    display: block;
+    margin-top: 1.5rem;
+    color: color(dark);
+    font-size: font-size(base);
+  }
+  &-input {
+    padding: 10px;
+    font-size: font-size(base);
+    border-radius: border-radius(default);
+    border: 1px solid color(light-border);
+    margin-right: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
+
+    &:focus {
+      border-color: color(primary);
+      box-shadow: 0 0 5px color(dark);
+      outline: none;
+    }
+  }
+}
