@@ -34,6 +34,19 @@ export const fetchCategoryById = async (id: number) => {
   return handleResponse(response)
 }
 
+export const createCategory = async (category: Partial<Category>) => {
+  const response = await fetch(`${API_URL}/create`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+    body: JSON.stringify(category)
+  })
+
+  return handleResponse(response)
+}
+
 export const updateCategory = async (id: number, category: Partial<Category>) => {
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
