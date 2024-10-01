@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
-import { register } from '@/api/register.api'
-import { registerSchema } from '@/schemas/register.schema'
-import type { RegisterValues } from '@/interfaces/register.interface'
+import { register } from '@/api/auth/register.api'
+import { registerSchema } from '@/schemas/auth/register.schema'
+import type { RegisterValues } from '@/interfaces/auth/register.interface'
 
 const errorMessage = ref('')
 const router = useRouter()

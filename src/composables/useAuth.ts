@@ -3,10 +3,10 @@ import type { ComputedRef } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import { setCookie, getCookie, deleteCookie } from '@/utils/cookie.utils'
-import { fetchUserInfo } from '@/api/user.api'
-import { loginUser } from '@/api/login.api'
-import { logoutUser } from '@/api/logout.api'
-import type { userInterface } from '@/interfaces/user.interface'
+import { fetchUserInfo } from '@/api/auth/user.api'
+import { loginUser } from '@/api/auth/login.api'
+import { logoutUser } from '@/api/auth/logout.api'
+import type { userInterface } from '@/interfaces/auth/user.interface'
 
 // TODO: Trouver une solution pour ne pas avoir à créer un cookie LOGIN
 

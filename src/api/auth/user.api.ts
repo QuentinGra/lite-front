@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/stores/authStore'
-import type { userWithTimestampsInterface } from '@/interfaces/user.interface'
+import type { userWithTimestampsInterface } from '@/interfaces/auth/user.interface'
 
 const API_URL = `${import.meta.env.VITE_API_URL_LOCAL}/api/user/me`
 

@@ -2,8 +2,8 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
-import { loginSchema } from '@/schemas/login.schema'
-import type { LoginValues } from '@/interfaces/login.interface'
+import { loginSchema } from '@/schemas/auth/login.schema'
+import type { LoginValues } from '@/interfaces/auth/login.interface'
 import { useAuth } from '@/composables/useAuth'
 
 const errorMessage = ref('')
