@@ -1,27 +1,17 @@
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { fetchCategories, deleteCategoryById } from '@/api/admin/category/category.api'
+import { deleteCategoryById } from '@/api/admin/category/category.api'
 import type { Category } from '@/interfaces/admin/category.interface'
 
 const router = useRouter()
 
-const state = reactive({
-  categories: [] as Category[]
-})
+const props = defineProps<{
+  categories: Category[]
+}>()
 
-const loadCategories = async () => {
-  try {
-    const data = await fetchCategories()
-    state.categories = data
-  } catch (error) {
-    console.error('Failed to fetch categories:', error)
-  }
-}
-
-onMounted(() => {
-  loadCategories()
-})
+const emit = defineEmits<{
+  (e: 'categoryDeleted', id: number): void
+}>()
 
 const editCategory = (id: number): void => {
   router.push({ name: 'AdminCategoryEdit', params: { id } })
@@ -30,7 +20,7 @@ const editCategory = (id: number): void => {
 const deleteCategory = async (id: number): Promise<void> => {
   try {
     await deleteCategoryById(id)
-    state.categories = state.categories.filter((category) => category.id !== id)
+    emit('categoryDeleted', id)
   } catch (error) {
     console.error('Failed to delete category:', error)
   }
@@ -47,7 +37,7 @@ const deleteCategory = async (id: number): Promise<void> => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="category in state.categories" :key="category.id">
+      <tr v-for="category in props.categories" :key="category.id">
         <td>{{ category.name }}</td>
         <td>{{ category.enable ? 'Actif' : 'Inactif' }}</td>
         <td>
