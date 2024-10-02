@@ -2,10 +2,10 @@
 import { ref } from 'vue'
 import { useAuth } from '@/composables/useAuth'
 
-const isMenuOpen = ref(false)
+const isMenuOpen = ref<boolean>(false)
 const { isUserDefined, logout, hasRole } = useAuth()
 
-const toggleMenu = () => {
+const toggleMenu = (): void => {
   isMenuOpen.value = !isMenuOpen.value
 }
 </script>

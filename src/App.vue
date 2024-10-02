@@ -5,7 +5,7 @@ import TheHeader from '@/components/layout/TheHeader.vue'
 
 const { checkAuth } = useAuth()
 
-onMounted(async () => {
+onMounted(async (): Promise<void> => {
   await checkAuth()
 })
 </script>

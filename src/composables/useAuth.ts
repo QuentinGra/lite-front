@@ -6,7 +6,7 @@ import { setCookie, getCookie, deleteCookie } from '@/utils/cookie.utils'
 import { fetchUserInfo } from '@/api/auth/user.api'
 import { loginUser } from '@/api/auth/login.api'
 import { logoutUser } from '@/api/auth/logout.api'
-import type { userInterface } from '@/interfaces/auth/user.interface'
+import type { User } from '@/interfaces/auth/user.interface'
 
 // TODO: Trouver une solution pour ne pas avoir à créer un cookie LOGIN
 
@@ -59,7 +59,7 @@ export function useAuth(): {
 
   const login = async (username: string, password: string): Promise<void> => {
     try {
-      const data: userInterface = await loginUser(username, password)
+      const data: User = await loginUser(username, password)
       authStore.setUser(data)
       setCookie('LOGIN', 'true', 14400)
     } catch (error) {

@@ -1,31 +1,31 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import CategoryList from '@/components/admin/CategoryList.vue'
-import { fetchCategories } from '@/api/admin/category/category.api'
+import { fetchCategories } from '@/api/admin/category.api'
 import type { Category } from '@/interfaces/admin/category.interface'
 
-const search = ref('')
+const search = ref<string>('')
 const categories = ref<Category[]>([])
-const filteredCategories = computed(() => {
-  return categories.value.filter((category) =>
+const filteredCategories = computed<Category[]>(() => {
+  return categories.value.filter((category: Category) =>
     category.name.toLowerCase().includes(search.value.toLowerCase())
   )
 })
 
-const loadCategories = async () => {
+const loadCategories = async (): Promise<void> => {
   try {
-    const data = await fetchCategories()
+    const data: Category[] = await fetchCategories()
     categories.value = data
   } catch (error) {
     console.error('Failed to fetch categories:', error)
   }
 }
 
-const handleCategoryDeleted = (id: number) => {
-  categories.value = categories.value.filter((category) => category.id !== id)
+const handleCategoryDeleted = (id: number): void => {
+  categories.value = categories.value.filter((category: Category) => category.id !== id)
 }
 
-onMounted(() => {
+onMounted((): void => {
   loadCategories()
 })
 </script>

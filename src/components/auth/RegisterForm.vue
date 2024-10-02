@@ -6,13 +6,12 @@ import { register } from '@/api/auth/register.api'
 import { registerSchema } from '@/schemas/auth/register.schema'
 import type { RegisterValues } from '@/interfaces/auth/register.interface'
 
-const errorMessage = ref('')
 const router = useRouter()
+const errorMessage = ref<string>('')
 
-const handleRegister = async (values: RegisterValues) => {
+const handleRegister = async (values: RegisterValues): Promise<void> => {
   try {
     const { ...registerValues } = values
-    console.log(registerValues)
 
     const response = await register(
       registerValues.email,

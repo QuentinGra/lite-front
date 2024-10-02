@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const isSidebarOpen = ref(true)
+const isSidebarOpen = ref<boolean>(true)
 
-const toggleSidebar = () => {
+const toggleSidebar = (): void => {
   isSidebarOpen.value = !isSidebarOpen.value
 }
 </script>
@@ -17,6 +17,7 @@ const toggleSidebar = () => {
       <ul>
         <li><router-link to="/admin-panel">Dashboard</router-link></li>
         <li><router-link to="/admin-panel/categories">Categories</router-link></li>
+        <li><router-link to="/admin-panel/editions">Editions</router-link></li>
       </ul>
     </nav>
   </aside>

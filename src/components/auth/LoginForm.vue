@@ -6,11 +6,11 @@ import { loginSchema } from '@/schemas/auth/login.schema'
 import type { LoginValues } from '@/interfaces/auth/login.interface'
 import { useAuth } from '@/composables/useAuth'
 
-const errorMessage = ref('')
 const router = useRouter()
 const { login, hasRole } = useAuth()
+const errorMessage = ref<string>('')
 
-const handleLogin = async (values: LoginValues) => {
+const handleLogin = async (values: LoginValues): Promise<void> => {
   try {
     await login(values.username, values.password)
     if (hasRole('ROLE_ADMIN')) {

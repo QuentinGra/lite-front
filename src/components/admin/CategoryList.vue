@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { deleteCategoryById } from '@/api/admin/category/category.api'
+import { deleteCategoryById } from '@/api/admin/category.api'
 import type { Category } from '@/interfaces/admin/category.interface'
 
 const router = useRouter()
@@ -41,8 +41,8 @@ const deleteCategory = async (id: number): Promise<void> => {
         <td>{{ category.name }}</td>
         <td>{{ category.enable ? 'Actif' : 'Inactif' }}</td>
         <td>
-          <button @click="editCategory(category.id)" class="button-edit">Edit</button>
-          <button @click="deleteCategory(category.id)" class="button-delete">Delete</button>
+          <button @click="editCategory(category.id)" class="button-edit">Modifier</button>
+          <button @click="deleteCategory(category.id)" class="button-delete">Supprimer</button>
         </td>
       </tr>
     </tbody>

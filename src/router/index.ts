@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import { useAuth } from '@/composables/useAuth'
 
-const routes = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
@@ -32,13 +33,27 @@ const routes = [
       {
         path: 'categorie/:id/modifier',
         name: 'AdminCategoryEdit',
-        component: () => import('@/views/admin/category/AdminCategoryEditView.vue'),
-        props: true
+        component: () => import('@/views/admin/category/AdminCategoryEditView.vue')
       },
       {
         path: 'categorie/creer',
         name: 'AdminCategoryCreate',
         component: () => import('@/views/admin/category/AdminCategoryCreateView.vue')
+      },
+      {
+        path: 'editions',
+        name: 'AdminEdition',
+        component: () => import('@/views/admin/edition/AdminEditionView.vue')
+      },
+      {
+        path: 'edition/:id/modifier',
+        name: 'AdminEditionEdit',
+        component: () => import('@/views/admin/edition/AdminEditionEditView.vue')
+      },
+      {
+        path: 'edition/creer',
+        name: 'AdminEditionCreate',
+        component: () => import('@/views/admin/edition/AdminEditionCreateView.vue')
       }
     ]
   },

@@ -1,6 +1,13 @@
+import type { FetchError } from '@/interfaces/error/error.interface'
+
 const API_URL = `${import.meta.env.VITE_API_URL_LOCAL}/api/user/logout`
 
-export const logoutUser = async () => {
+interface LogoutResponse {
+  status: string
+  message: string
+}
+
+export const logoutUser = async (): Promise<LogoutResponse> => {
   const response = await fetch(API_URL, {
     method: 'GET',
     headers: {
@@ -10,10 +17,10 @@ export const logoutUser = async () => {
   })
 
   if (!response.ok) {
-    const error = await response.json()
+    const error: FetchError = await response.json()
     throw new Error(error.message)
   }
 
-  const data = await response.json()
+  const data: LogoutResponse = await response.json()
   return data
 }

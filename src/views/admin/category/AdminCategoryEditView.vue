@@ -3,7 +3,7 @@ import { reactive, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
 import { categorySchema } from '@/schemas/admin/category.schema'
-import { fetchCategoryById, updateCategory } from '@/api/admin/category/category.api'
+import { fetchCategoryById, updateCategory } from '@/api/admin/category.api'
 import type { Category } from '@/interfaces/admin/category.interface'
 
 const router = useRouter()
@@ -18,17 +18,17 @@ const state = reactive<Partial<Category>>({
   enable: false
 })
 
-const loadCategory = async () => {
+const loadCategory = async (): Promise<void> => {
   const categoryId = Number(route.params.id)
   try {
-    const data = await fetchCategoryById(categoryId)
+    const data: Category = await fetchCategoryById(categoryId)
     Object.assign(state, data)
   } catch (error) {
     console.error('Failed to fetch category:', error)
   }
 }
 
-const saveCategory = async () => {
+const saveCategory = async (): Promise<void> => {
   try {
     await updateCategory(state.id!, state)
     router.push({ name: 'AdminCategory' })
@@ -37,7 +37,7 @@ const saveCategory = async () => {
   }
 }
 
-onMounted(() => {
+onMounted((): void => {
   loadCategory()
 })
 

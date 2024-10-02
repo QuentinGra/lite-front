@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
 import { categorySchema } from '@/schemas/admin/category.schema'
-import { createCategory } from '@/api/admin/category/category.api'
+import { createCategory } from '@/api/admin/category.api'
 import type { Category } from '@/interfaces/admin/category.interface'
 
 const router = useRouter()
@@ -14,7 +14,7 @@ const state = reactive<Partial<Category>>({
   enable: false
 })
 
-const saveCategory = async () => {
+const saveCategory = async (): Promise<void> => {
   try {
     await createCategory(state)
     router.push({ name: 'AdminCategory' })

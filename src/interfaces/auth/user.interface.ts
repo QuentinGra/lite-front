@@ -1,4 +1,4 @@
-export interface userInterface {
+export interface User {
   id: number
   email: string
   firstName: string
@@ -7,7 +7,7 @@ export interface userInterface {
   roles: string[]
 }
 
-export interface userWithTimestampsInterface extends userInterface {
+export interface UserWithTimestampsInterface extends User {
   createdAt: Date
   updatedAt: Date
 }
