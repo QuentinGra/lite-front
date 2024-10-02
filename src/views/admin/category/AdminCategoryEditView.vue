@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
 import { categorySchema } from '@/schemas/admin/category.schema'
@@ -8,6 +8,7 @@ import type { Category } from '@/interfaces/admin/category.interface'
 
 const router = useRouter()
 const route = useRoute()
+const errorMessage = ref<string>('')
 
 const state = reactive<Partial<Category>>({
   id: 0,
@@ -33,7 +34,11 @@ const saveCategory = async (): Promise<void> => {
     await updateCategory(state.id!, state)
     router.push({ name: 'AdminCategory' })
   } catch (error) {
-    console.error('Failed to save category:', error)
+    if (error instanceof Error) {
+      errorMessage.value = error.message
+    } else {
+      errorMessage.value = 'Une erreur est survenue'
+    }
   }
 }
 
@@ -47,6 +52,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(categorySchema, saveCategory)
 <template>
   <div>
     <h1 class="title">Modification d'une catégorie</h1>
+    <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
     <FormKit type="form" submit-label="Enregistrer" :plugins="[zodPlugin]" @submit="submitHandler">
       <FormKit
         type="text"
