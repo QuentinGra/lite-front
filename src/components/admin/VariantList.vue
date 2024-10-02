@@ -14,7 +14,7 @@ const emit = defineEmits<{
 }>()
 
 const editBookVariant = (id: number): void => {
-  router.push({ name: 'AdminBookVariantEdit', params: { id } })
+  router.push({ name: 'AdminVariantEdit', params: { id } })
 }
 
 const deleteBookVariant = async (id: number): Promise<void> => {

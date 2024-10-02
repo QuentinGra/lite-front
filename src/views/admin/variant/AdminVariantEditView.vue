@@ -29,7 +29,7 @@ const loadBookVariant = async (): Promise<void> => {
 const saveBookVariant = async (): Promise<void> => {
   try {
     await updateBookVariant(state.id!, state)
-    router.push({ name: 'AdminBookVariant' })
+    router.push({ name: 'AdminVariant' })
   } catch (error) {
     if (error instanceof Error) {
       errorMessage.value = error.message

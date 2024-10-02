@@ -17,7 +17,7 @@ const state = reactive<Partial<BookVariant>>({
 const saveBookVariant = async (): Promise<void> => {
   try {
     await createBookVariant(state)
-    router.push({ name: 'AdminBookVariant' })
+    router.push({ name: 'AdminVariant' })
   } catch (error) {
     if (error instanceof Error) {
       errorMessage.value = error.message

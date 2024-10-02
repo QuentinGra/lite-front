@@ -36,7 +36,7 @@ onMounted((): void => {
     <label for="search-input" class="search-label">Rechercher une variante</label>
     <div class="button-container">
       <input type="text" v-model="search" placeholder="Type" class="search-input" />
-      <router-link to="/admin-panel/book-variant/creer" class="button-create">Créer</router-link>
+      <router-link to="/admin-panel/variant/creer" class="button-create">Créer</router-link>
     </div>
     <BookVariantList
       :book-variants="filteredBookVariants"
