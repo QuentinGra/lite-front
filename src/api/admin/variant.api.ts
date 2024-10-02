@@ -1,4 +1,4 @@
-import type { BookVariant } from '@/interfaces/admin/bookVariant.interface'
+import type { BookVariant } from '@/interfaces/admin/variant.interface'
 import type { FetchError } from '@/interfaces/error/error.interface'
 
 const API_URL = `${import.meta.env.VITE_API_URL_LOCAL}/api/book-variant`

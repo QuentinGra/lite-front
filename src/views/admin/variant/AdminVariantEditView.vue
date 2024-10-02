@@ -1,22 +1,34 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { reactive, ref, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
 import { bookVariantSchema } from '@/schemas/admin/bookVariant.schema'
-import { createBookVariant } from '@/api/admin/bookVariant.api'
-import type { BookVariant } from '@/interfaces/admin/bookVariant.interface'
+import { fetchBookVariantById, updateBookVariant } from '@/api/admin/variant.api'
+import type { BookVariant } from '@/interfaces/admin/variant.interface'
 
 const router = useRouter()
+const route = useRoute()
 const errorMessage = ref<string>('')
 
 const state = reactive<Partial<BookVariant>>({
+  id: 0,
   type: '',
   enable: false
 })
 
+const loadBookVariant = async (): Promise<void> => {
+  const bookVariantId = Number(route.params.id)
+  try {
+    const data: BookVariant = await fetchBookVariantById(bookVariantId)
+    Object.assign(state, data)
+  } catch (error) {
+    console.error('Failed to fetch book variant:', error)
+  }
+}
+
 const saveBookVariant = async (): Promise<void> => {
   try {
-    await createBookVariant(state)
+    await updateBookVariant(state.id!, state)
     router.push({ name: 'AdminBookVariant' })
   } catch (error) {
     if (error instanceof Error) {
@@ -27,12 +39,16 @@ const saveBookVariant = async (): Promise<void> => {
   }
 }
 
+onMounted((): void => {
+  loadBookVariant()
+})
+
 const [zodPlugin, submitHandler] = createZodPlugin(bookVariantSchema, saveBookVariant)
 </script>
 
 <template>
   <div>
-    <h1 class="title">Création d'une variante de livre</h1>
+    <h1 class="title">Modification d'une variante de livre</h1>
     <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
     <FormKit type="form" submit-label="Enregistrer" :plugins="[zodPlugin]" @submit="submitHandler">
       <FormKit
@@ -40,8 +56,8 @@ const [zodPlugin, submitHandler] = createZodPlugin(bookVariantSchema, saveBookVa
         name="type"
         v-model="state.type"
         validation="required"
-        validation-label="Le type du variant"
-        help="Veuillez sélectionner le type de la variante. Ce champ est obligatoire. Si vous voulez ajouter un nouveau type, veuillez contacter l'administrateur."
+        validation-label="Le type de la variante"
+        help="Veuillez sélectionner le type de la variante. Ce champ est obligatoire."
         :options="[
           { value: 'brocher', label: 'Broché' },
           { value: 'poche', label: 'Poche' },
@@ -53,7 +69,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(bookVariantSchema, saveBookVa
         type="checkbox"
         name="enable"
         v-model="state.enable"
-        help="Cochez cette case si le variant doit être actif."
+        help="Cochez cette case si la variante doit être active."
       />
     </FormKit>
   </div>
