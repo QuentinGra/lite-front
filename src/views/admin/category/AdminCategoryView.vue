@@ -32,7 +32,7 @@ onMounted((): void => {
 
 <template>
   <div>
-    <h1>Liste des catégories</h1>
+    <h1 class="title">Liste des catégories</h1>
     <label for="search-input" class="search-label">Rechercher une catégorie</label>
     <div class="button-container">
       <input type="text" v-model="search" placeholder="Nom" class="search-input" />

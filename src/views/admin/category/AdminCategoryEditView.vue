@@ -46,12 +46,13 @@ const [zodPlugin, submitHandler] = createZodPlugin(categorySchema, saveCategory)
 
 <template>
   <div>
-    <h1>Edit Category</h1>
+    <h1 class="title">Modification d'une catégorie</h1>
     <FormKit type="form" submit-label="Enregistrer" :plugins="[zodPlugin]" @submit="submitHandler">
       <FormKit
         type="text"
         name="name"
         validation="required"
+        validation-label="Le nom de la catégorie"
         v-model="state.name"
         help="Veuillez entrer le nom de la catégorie. Ce champ est obligatoire."
       />

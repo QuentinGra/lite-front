@@ -38,8 +38,8 @@ onMounted((): void => {
 
 <template>
   <div>
-    <h1>Liste des éditions</h1>
-    <label for="search-input" class="search-label">Rechercher une édition</label>
+    <h1 class="title">Liste des maisons d'éditions</h1>
+    <label for="search-input" class="search-label">Rechercher une maison d'édition</label>
     <div class="button-container">
       <input type="text" v-model="search" placeholder="Nom" class="search-input" />
       <router-link to="/admin-panel/edition/creer" class="button-create">Créer</router-link>

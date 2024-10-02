@@ -10,10 +10,12 @@ $colors: (
   dark-danger: #c82333,
   warning: #ffc107,
   dark-warning: #e0a800,
-  light: #f8f9fa,
-  light-border: #ddd,
-  light-secondary: #f4f4f4,
-  dark: #343a40
+  light: #ffffff,
+  light-border: #94929b,
+  light-secondary: #f9f9f9,
+  dark: #1f212a,
+  text: #212121,
+  grey: #575960
 );
 
 // Breakpoints
@@ -26,8 +28,8 @@ $breakpoints: (
 
 // Border-radius
 $border-radius: (
-  default: 5px,
-  medium: 10px
+  default: 0.25em,
+  medium: 0.5em
 );
 
 // Shadows

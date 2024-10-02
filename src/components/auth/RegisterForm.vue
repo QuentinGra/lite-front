@@ -11,15 +11,9 @@ const errorMessage = ref<string>('')
 
 const handleRegister = async (values: RegisterValues): Promise<void> => {
   try {
-    const { ...registerValues } = values
+    const { email, password, firstName, lastName, birthDate } = values
 
-    const response = await register(
-      registerValues.email,
-      registerValues.password,
-      registerValues.firstName,
-      registerValues.lastName,
-      registerValues.birthDate
-    )
+    const response = await register(email, password, firstName, lastName, birthDate)
 
     if (response) router.push('/connexion')
   } catch (error) {
@@ -41,6 +35,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(registerSchema, handleRegiste
       type="email"
       name="email"
       validation="required"
+      validation-label="Le mail"
       placeholder="exemple@gmail.com"
       help="Entrer votre adresse mail"
     />
@@ -48,6 +43,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(registerSchema, handleRegiste
       type="password"
       name="password"
       validation="required"
+      validation-label="Le mot de passe"
       placeholder="********"
       help="Entrer votre mot de passe"
     />
@@ -55,6 +51,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(registerSchema, handleRegiste
       type="password"
       name="confirmationPassword"
       validation="required"
+      validation-label="Confirmation du mot de passe"
       placeholder="********"
       help="Confirmer votre mot de passe"
     />

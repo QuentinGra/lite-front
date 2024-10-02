@@ -33,11 +33,18 @@ const [zodPlugin, submitHandler] = createZodPlugin(loginSchema, handleLogin)
 <template>
   <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
   <FormKit type="form" submit-label="Connexion" :plugins="[zodPlugin]" @submit="submitHandler">
-    <FormKit type="email" name="username" validation="required" help="Entrer votre adresse mail" />
+    <FormKit
+      type="email"
+      name="username"
+      validation="required"
+      validation-label="Le mail"
+      help="Entrer votre adresse mail"
+    />
     <FormKit
       type="password"
       name="password"
       validation="required"
+      validation-label="Le mot de passe"
       help="Entrer votre mot de passe"
     />
   </FormKit>

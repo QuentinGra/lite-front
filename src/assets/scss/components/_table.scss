@@ -2,10 +2,12 @@
   &-admin {
     width: 100%;
     margin: 20px 0;
-    border-collapse: separate;
+    border-collapse: collapse;
     border-spacing: 0;
-    border-radius: border-radius(medium);
+    border-radius: border-radius(default);
     overflow: hidden;
+
+    // TODO: Résoudre le problème des bordures couper dans les angles
 
     th,
     td {
@@ -14,24 +16,23 @@
     }
 
     th {
-      background-color: color(light-secondary);
       text-align: left;
     }
 
     thead th:first-child {
-      border-top-left-radius: border-radius(medium);
+      border-top-left-radius: border-radius(default);
     }
 
     thead th:last-child {
-      border-top-right-radius: border-radius(medium);
+      border-top-right-radius: border-radius(default);
     }
 
     tbody tr:last-child td:first-child {
-      border-bottom-left-radius: border-radius(medium);
+      border-bottom-left-radius: border-radius(default);
     }
 
     tbody tr:last-child td:last-child {
-      border-bottom-right-radius: border-radius(medium);
+      border-bottom-right-radius: border-radius(default);
     }
   }
 }

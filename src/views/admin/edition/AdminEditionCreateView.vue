@@ -33,7 +33,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(editionSchema, saveEdition)
 
 <template>
   <div>
-    <h1>Créer une nouvelle édition</h1>
+    <h1 class="title">Création d'un maison d'édition</h1>
     <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
     <FormKit type="form" submit-label="Enregistrer" :plugins="[zodPlugin]" @submit="submitHandler">
       <FormKit
@@ -41,6 +41,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(editionSchema, saveEdition)
         name="name"
         v-model="state.name"
         validation="required"
+        validation-label="Le nom de la maison d'édition"
         help="Veuillez entrer le nom de l'édition. Ce champ est obligatoire."
       />
       <FormKit
