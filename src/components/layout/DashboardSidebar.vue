@@ -11,7 +11,7 @@ const toggleSidebar = (): void => {
 <template>
   <aside :class="{ sidebar: true, 'sidebar-closed': !isSidebarOpen }">
     <button @click="toggleSidebar">
-      {{ isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar' }}
+      <i :class="isSidebarOpen ? 'bi bi-x' : 'bi bi-arrow-bar-right'"></i>
     </button>
     <nav v-if="isSidebarOpen">
       <ul>
