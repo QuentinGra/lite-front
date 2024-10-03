@@ -69,6 +69,21 @@ const routes: Array<RouteRecordRaw> = [
         path: 'variant/creer',
         name: 'AdminVariantCreate',
         component: () => import('@/views/admin/variant/AdminVariantCreateView.vue')
+      },
+      {
+        path: 'auteurs',
+        name: 'AdminAuthor',
+        component: () => import('@/views/admin/author/AdminAuthorView.vue')
+      },
+      {
+        path: 'auteur/:id/modifier',
+        name: 'AdminAuthorEdit',
+        component: () => import('@/views/admin/author/AdminAuthorEditView.vue')
+      },
+      {
+        path: 'auteur/creer',
+        name: 'AdminAuthorCreate',
+        component: () => import('@/views/admin/author/AdminAuthorCreateView.vue')
       }
     ]
   },

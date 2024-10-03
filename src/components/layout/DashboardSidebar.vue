@@ -15,10 +15,12 @@ const toggleSidebar = (): void => {
     </button>
     <nav v-if="isSidebarOpen">
       <ul>
-        <li><router-link to="/admin-panel">Panel d'administration</router-link></li>
+        <li><router-link to="/admin-panel/livres">Livres</router-link></li>
         <li><router-link to="/admin-panel/categories">Catégories</router-link></li>
         <li><router-link to="/admin-panel/editions">Editions</router-link></li>
+        <li><router-link to="/admin-panel/auteurs">Auteurs</router-link></li>
         <li><router-link to="/admin-panel/variants">Variants</router-link></li>
+        <li><router-link to="/admin-panel/utilisateurs">Utilisateurs</router-link></li>
       </ul>
     </nav>
   </aside>
