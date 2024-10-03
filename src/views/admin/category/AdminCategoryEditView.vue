@@ -25,7 +25,7 @@ const loadCategory = async (): Promise<void> => {
     const data: Category = await fetchCategoryById(categoryId)
     Object.assign(state, data)
   } catch (error) {
-    console.error('Failed to fetch category:', error)
+    errorMessage.value = 'Impossible de charger les catégories'
   }
 }
 

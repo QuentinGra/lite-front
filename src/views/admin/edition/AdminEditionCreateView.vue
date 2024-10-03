@@ -42,19 +42,19 @@ const [zodPlugin, submitHandler] = createZodPlugin(editionSchema, saveEdition)
         v-model="state.name"
         validation="required"
         validation-label="Le nom de la maison d'édition"
-        help="Veuillez entrer le nom de l'édition. Ce champ est obligatoire."
+        help="Veuillez entrer le nom de la maison d'édition. Ce champ est obligatoire."
       />
       <FormKit
         type="textarea"
         name="description"
         v-model="state.description"
-        help="Vous pouvez entrer une description pour l'édition. Ce champ est optionnel."
+        help="Vous pouvez entrer une description pour la maison d'édition. Ce champ est optionnel."
       />
       <FormKit
         type="checkbox"
         name="enable"
         v-model="state.enable"
-        help="Cochez cette case si l'édition doit être active."
+        help="Cochez cette case si la maison d'édition doit être active."
       />
     </FormKit>
   </div>

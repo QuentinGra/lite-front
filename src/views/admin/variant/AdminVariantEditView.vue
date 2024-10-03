@@ -22,7 +22,7 @@ const loadBookVariant = async (): Promise<void> => {
     const data: BookVariant = await fetchBookVariantById(bookVariantId)
     Object.assign(state, data)
   } catch (error) {
-    console.error('Failed to fetch book variant:', error)
+    errorMessage.value = 'Impossible de charger les variants de livre'
   }
 }
 
@@ -51,20 +51,9 @@ const [zodPlugin, submitHandler] = createZodPlugin(bookVariantSchema, saveBookVa
     <h1 class="title">Modification d'une variante de livre</h1>
     <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
     <FormKit type="form" submit-label="Enregistrer" :plugins="[zodPlugin]" @submit="submitHandler">
-      <FormKit
-        type="select"
-        name="type"
-        v-model="state.type"
-        validation="required"
-        validation-label="Le type de la variante"
-        help="Veuillez sélectionner le type de la variante. Ce champ est obligatoire."
-        :options="[
-          { value: 'brocher', label: 'Broché' },
-          { value: 'poche', label: 'Poche' },
-          { value: 'relier', label: 'Relier' },
-          { value: 'ebook', label: 'Livre électronique' }
-        ]"
-      />
+      <div>
+        <p class="variant-type"><b>Type du variant:</b> {{ state.type }}</p>
+      </div>
       <FormKit
         type="checkbox"
         name="enable"

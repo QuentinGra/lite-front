@@ -5,7 +5,9 @@ import { fetchBookVariants } from '@/api/admin/variant.api'
 import type { BookVariant } from '@/interfaces/admin/variant.interface'
 
 const search = ref<string>('')
+const errorMessage = ref<string>('')
 const bookVariants = ref<BookVariant[]>([])
+
 const filteredBookVariants = computed<BookVariant[]>(() => {
   return bookVariants.value.filter((variant: BookVariant) =>
     variant.type.toLowerCase().includes(search.value.toLowerCase())
@@ -17,7 +19,7 @@ const loadBookVariants = async (): Promise<void> => {
     const data: BookVariant[] = await fetchBookVariants()
     bookVariants.value = data
   } catch (error) {
-    console.error('Failed to fetch book variants:', error)
+    errorMessage.value = 'Impossible de charger les variants de livre'
   }
 }
 
@@ -38,6 +40,7 @@ onMounted((): void => {
       <input type="text" v-model="search" placeholder="Type" class="search-input" />
       <router-link to="/admin-panel/variant/creer" class="button-create">Créer</router-link>
     </div>
+    <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
     <BookVariantList
       :book-variants="filteredBookVariants"
       @book-variant-deleted="handleBookVariantDeleted"

@@ -19,11 +19,7 @@ const loadEditions = async (): Promise<void> => {
     const data: Edition[] = await fetchEditions()
     editions.value = data
   } catch (error) {
-    if (error instanceof Error) {
-      errorMessage.value = error.message
-    } else {
-      errorMessage.value = 'Une erreur est survenue'
-    }
+    errorMessage.value = "Imposible de charger les maisons d'éditions"
   }
 }
 

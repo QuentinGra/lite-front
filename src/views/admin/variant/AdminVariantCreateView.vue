@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
 import { bookVariantSchema } from '@/schemas/admin/bookVariant.schema'
-import { createBookVariant } from '@/api/admin/variant.api'
+import { fetchBookVariants, createBookVariant } from '@/api/admin/variant.api'
 import type { BookVariant } from '@/interfaces/admin/variant.interface'
 
 const router = useRouter()
@@ -13,6 +13,29 @@ const state = reactive<Partial<BookVariant>>({
   type: '',
   enable: false
 })
+
+const existingVariants = ref<BookVariant[]>([])
+const options = ref([
+  { value: 'brocher', label: 'Broché' },
+  { value: 'poche', label: 'Poche' },
+  { value: 'relier', label: 'Relier' },
+  { value: 'ebook', label: 'Livre électronique' }
+])
+
+const loadExistingVariants = async (): Promise<void> => {
+  try {
+    const data: BookVariant[] = await fetchBookVariants()
+    existingVariants.value = data
+    filterOptions()
+  } catch (error) {
+    errorMessage.value = 'Impossible de charger les variants de livre'
+  }
+}
+
+const filterOptions = (): void => {
+  const existingTypes = existingVariants.value.map((variant) => variant.type)
+  options.value = options.value.filter((option) => !existingTypes.includes(option.value))
+}
 
 const saveBookVariant = async (): Promise<void> => {
   try {
@@ -26,6 +49,10 @@ const saveBookVariant = async (): Promise<void> => {
     }
   }
 }
+
+onMounted((): void => {
+  loadExistingVariants()
+})
 
 const [zodPlugin, submitHandler] = createZodPlugin(bookVariantSchema, saveBookVariant)
 </script>
@@ -41,13 +68,8 @@ const [zodPlugin, submitHandler] = createZodPlugin(bookVariantSchema, saveBookVa
         v-model="state.type"
         validation="required"
         validation-label="Le type du variant"
-        help="Veuillez sélectionner le type de la variante. Ce champ est obligatoire. Si vous voulez ajouter un nouveau type, veuillez contacter l'administrateur."
-        :options="[
-          { value: 'brocher', label: 'Broché' },
-          { value: 'poche', label: 'Poche' },
-          { value: 'relier', label: 'Relier' },
-          { value: 'ebook', label: 'Livre électronique' }
-        ]"
+        help="Si le type de variant ne figure pas dans la liste ou que la liste est vide c'est que tous les types de variant ont déjà été créés."
+        :options="options"
       />
       <FormKit
         type="checkbox"
