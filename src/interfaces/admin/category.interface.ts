@@ -6,3 +6,7 @@ export interface Category {
   updatedAt: Date
   enable: boolean
 }
+
+export interface CategoryState {
+  categories: Category[]
+}

@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 import CategoryList from '@/components/admin/CategoryList.vue'
 import { fetchCategories } from '@/api/admin/category.api'
-import type { Category } from '@/interfaces/admin/category.interface'
+import type { Category, CategoryState } from '@/interfaces/admin/category.interface'
 
 const search = ref<string>('')
 const errorMessage = ref<string>('')
-const categories = ref<Category[]>([])
+const state = reactive<CategoryState>({
+  categories: []
+})
 
 const filteredCategories = computed<Category[]>(() => {
-  return categories.value.filter((category: Category) =>
+  return state.categories.filter((category: Category) =>
     category.name.toLowerCase().includes(search.value.toLowerCase())
   )
 })
@@ -17,14 +19,14 @@ const filteredCategories = computed<Category[]>(() => {
 const loadCategories = async (): Promise<void> => {
   try {
     const data: Category[] = await fetchCategories()
-    categories.value = data
+    state.categories = data
   } catch (error) {
     errorMessage.value = 'Impossible de charger les catégories'
   }
 }
 
 const handleCategoryDeleted = (id: number): void => {
-  categories.value = categories.value.filter((category: Category) => category.id !== id)
+  state.categories = state.categories.filter((category: Category) => category.id !== id)
 }
 
 onMounted((): void => {

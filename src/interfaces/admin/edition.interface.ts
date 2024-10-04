@@ -6,3 +6,7 @@ export interface Edition {
   updatedAt: Date
   enable: boolean
 }
+
+export interface EditionState {
+  editions: Edition[]
+}

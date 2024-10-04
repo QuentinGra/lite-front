@@ -5,3 +5,7 @@ export interface BookVariant {
   updatedAt: Date
   enable: boolean
 }
+
+export interface VariantState {
+  variants: BookVariant[]
+}

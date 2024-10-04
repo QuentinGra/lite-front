@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 import BookVariantList from '@/components/admin/VariantList.vue'
 import { fetchBookVariants } from '@/api/admin/variant.api'
-import type { BookVariant } from '@/interfaces/admin/variant.interface'
+import type { BookVariant, VariantState } from '@/interfaces/admin/variant.interface'
 
 const search = ref<string>('')
 const errorMessage = ref<string>('')
-const bookVariants = ref<BookVariant[]>([])
+const state = reactive<VariantState>({
+  variants: []
+})
 
 const filteredBookVariants = computed<BookVariant[]>(() => {
-  return bookVariants.value.filter((variant: BookVariant) =>
+  return state.variants.filter((variant: BookVariant) =>
     variant.type.toLowerCase().includes(search.value.toLowerCase())
   )
 })
@@ -17,14 +19,14 @@ const filteredBookVariants = computed<BookVariant[]>(() => {
 const loadBookVariants = async (): Promise<void> => {
   try {
     const data: BookVariant[] = await fetchBookVariants()
-    bookVariants.value = data
+    state.variants = data
   } catch (error) {
     errorMessage.value = 'Impossible de charger les variants de livre'
   }
 }
 
 const handleBookVariantDeleted = (id: number): void => {
-  bookVariants.value = bookVariants.value.filter((variant: BookVariant) => variant.id !== id)
+  state.variants = state.variants.filter((variant: BookVariant) => variant.id !== id)
 }
 
 onMounted((): void => {
