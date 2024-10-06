@@ -74,16 +74,9 @@ const [zodPlugin, submitHandler] = createZodPlugin(authorSchema, saveAuthor)
         v-model="state.enable"
         help="Cochez cette case si l'auteur doit être actif."
       />
-      <input type="file" name="image" @change="handleFileChange" accept=".jpg,.jpeg,.png,.webp" />
-      <!-- <FormKit
-        type="file"
-        name="image"
-        v-model="state.image"
-        accept=".jpg,.jpeg,.png, .webp"
-        validation="required"
-        validation-label="L'image de l'auteur"
-        help="Veuillez ajouter une image pour l'auteur. Ce champ est obligatoire."
-      /> -->
+      <div class="form-file">
+        <input type="file" name="image" @change="handleFileChange" accept=".jpg,.jpeg,.png,.webp" />
+      </div>
     </FormKit>
   </div>
 </template>

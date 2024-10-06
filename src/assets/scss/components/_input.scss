@@ -24,3 +24,30 @@
     }
   }
 }
+
+.form-file {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: fon-size(base);
+  color: color(dark);
+
+  input[type='file'] {
+    display: block;
+    margin-top: 0.5rem;
+    padding: 10px;
+    font-size: font-size(base);
+    border-radius: border-radius(default);
+    border: 1px solid color(light-border);
+    width: 100%;
+    box-sizing: border-box;
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
+
+    &:focus {
+      border-color: color(primary);
+      box-shadow: 0 0 5px color(dark);
+      outline: none;
+    }
+  }
+}
