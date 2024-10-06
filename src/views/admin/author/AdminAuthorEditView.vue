@@ -4,19 +4,18 @@ import { useRouter, useRoute } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
 import { authorSchema } from '@/schemas/admin/author.schema'
 import { fetchAuthorById, updateAuthor } from '@/api/admin/author.api'
-import type { Author, AuthorCreate } from '@/interfaces/admin/author.interface'
+import type { Author } from '@/interfaces/admin/author.interface'
 
 const router = useRouter()
 const route = useRoute()
 const errorMessage = ref<string>('')
 
-const state = reactive<Partial<AuthorCreate>>({
+const state = reactive<Partial<Author>>({
   id: 0,
   firstName: '',
   lastName: '',
   description: '',
-  enable: false,
-  image: undefined
+  enable: false
 })
 
 const loadAuthor = async (): Promise<void> => {
@@ -29,18 +28,9 @@ const loadAuthor = async (): Promise<void> => {
   }
 }
 
-const handleFileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement
-  if (input.files && input.files.length > 0) {
-    const file = input.files[0]
-    state.image = file
-  }
-}
-
 const saveAuthor = async (): Promise<void> => {
   try {
-    const { image, ...authorData } = state
-    await updateAuthor(state.id!, authorData, image)
+    await updateAuthor(state.id!, state)
     router.push({ name: 'AdminAuthor' })
   } catch (error) {
     if (error instanceof Error) {
@@ -91,7 +81,6 @@ const [zodPlugin, submitHandler] = createZodPlugin(authorSchema, saveAuthor)
         v-model="state.enable"
         help="Cochez cette case si l'auteur doit être actif."
       />
-      <input type="file" name="image" @change="handleFileChange" accept=".jpg,.jpeg,.png,.webp" />
     </FormKit>
   </div>
 </template>

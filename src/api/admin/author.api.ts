@@ -53,23 +53,14 @@ export const createAuthor = async (author: Partial<Author>, image?: File): Promi
   return handleResponse(response)
 }
 
-export const updateAuthor = async (
-  id: number,
-  author: Partial<Author>,
-  image?: File
-): Promise<Author> => {
-  const formData = new FormData()
-  Object.keys(author).forEach((key) => {
-    formData.append(key, (author as any)[key])
-  })
-  if (image) {
-    formData.append('image', image)
-  }
-
+export const updateAuthor = async (id: number, author: Partial<Author>): Promise<Author> => {
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     credentials: 'include',
-    body: formData
+    body: JSON.stringify(author)
   })
 
   return handleResponse(response)
