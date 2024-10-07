@@ -1,10 +1,10 @@
 import { useAuthStore } from '@/stores/authStore'
-import type { UserWithTimestampsInterface } from '@/interfaces/auth/user.interface'
+import type { User } from '@/interfaces/auth/user.interface'
 import type { FetchError } from '@/interfaces/error/error.interface'
 
 const API_URL = `${import.meta.env.VITE_API_URL_LOCAL}/api/user/me`
 
-export const fetchUserInfo = async (): Promise<UserWithTimestampsInterface> => {
+export const fetchUserInfo = async (): Promise<User> => {
   const response = await fetch(API_URL, {
     method: 'GET',
     headers: {
@@ -18,7 +18,7 @@ export const fetchUserInfo = async (): Promise<UserWithTimestampsInterface> => {
     throw new Error(error.message)
   }
 
-  const data: UserWithTimestampsInterface = await response.json()
+  const data: User = await response.json()
   useAuthStore().setUser(data)
   return data
 }

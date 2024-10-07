@@ -2,7 +2,7 @@
 import { ref, reactive, computed, onMounted } from 'vue'
 import UserList from '@/components/admin/UserList.vue'
 import { fetchUsers } from '@/api/admin/user.api'
-import type { UserWithTimestampsInterface, UserState } from '@/interfaces/auth/user.interface'
+import type { User, UserState } from '@/interfaces/auth/user.interface'
 
 const search = ref<string>('')
 const errorMessage = ref<string>('')
@@ -10,15 +10,15 @@ const state = reactive<UserState>({
   users: []
 })
 
-const filteredUsers = computed<UserWithTimestampsInterface[]>(() => {
-  return state.users.filter((user: UserWithTimestampsInterface) =>
+const filteredUsers = computed<User[]>(() => {
+  return state.users.filter((user: User) =>
     user.email.toLowerCase().includes(search.value.toLowerCase())
   )
 })
 
 const loadUsers = async (): Promise<void> => {
   try {
-    const data: UserWithTimestampsInterface[] = await fetchUsers()
+    const data: User[] = await fetchUsers()
     state.users = data
   } catch (error) {
     errorMessage.value = 'Impossible de charger les utilisateurs'
@@ -26,7 +26,7 @@ const loadUsers = async (): Promise<void> => {
 }
 
 const handleUserDeleted = (id: number): void => {
-  state.users = state.users.filter((user: UserWithTimestampsInterface) => user.id !== id)
+  state.users = state.users.filter((user: User) => user.id !== id)
 }
 
 onMounted((): void => {

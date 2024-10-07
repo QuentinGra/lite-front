@@ -10,7 +10,7 @@ const router = useRouter()
 const route = useRoute()
 const errorMessage = ref<string>('')
 
-const state = reactive<Partial<UserWithTimestampsInterface>>({
+const state = reactive<Partial<any>>({
   id: 0,
   lastName: '',
   firstName: '',
