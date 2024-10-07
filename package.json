@@ -16,7 +16,6 @@
     "@formkit/i18n": "^1.6.5",
     "@formkit/vue": "^1.6.5",
     "@formkit/zod": "^1.6.5",
-    "bootstrap-icons": "^1.11.3",
     "eslint": "^8.56.0",
     "lucide-vue-next": "^0.447.0",
     "pinia": "^2.2.2",
