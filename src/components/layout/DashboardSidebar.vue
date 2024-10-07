@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { X, ArrowRightFromLine } from 'lucide-vue-next'
 
 const isSidebarOpen = ref<boolean>(true)
 
@@ -11,7 +12,8 @@ const toggleSidebar = (): void => {
 <template>
   <aside :class="{ sidebar: true, 'sidebar-closed': !isSidebarOpen }">
     <button @click="toggleSidebar">
-      <i :class="isSidebarOpen ? 'bi bi-x' : 'bi bi-arrow-bar-right'"></i>
+      <X v-if="isSidebarOpen" />
+      <ArrowRightFromLine v-else />
     </button>
     <nav v-if="isSidebarOpen">
       <ul>
