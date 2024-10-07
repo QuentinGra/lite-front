@@ -4,8 +4,6 @@ $font-family: 'Lato', sans-serif;
 
 // Colors
 $colors: (
-  success: #28a745,
-  dark-success: #218838,
   danger: #dc3545,
   dark-danger: #c82333,
   warning: #ffc107,
@@ -15,7 +13,11 @@ $colors: (
   light-secondary: #f9f9f9,
   dark: #1f212a,
   text: #212121,
-  grey: #575960
+  grey: #575960,
+  teal: #008080,
+  dark-teal: #006666,
+  burgundy: #800020,
+  dark-burgundy: #5c0017
 );
 
 // Breakpoints

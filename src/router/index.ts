@@ -84,6 +84,16 @@ const routes: Array<RouteRecordRaw> = [
         path: 'auteur/creer',
         name: 'AdminAuthorCreate',
         component: () => import('@/views/admin/author/AdminAuthorCreateView.vue')
+      },
+      {
+        path: 'utilisateurs',
+        name: 'AdminUser',
+        component: () => import('@/views/admin/user/AdminUserView.vue')
+      },
+      {
+        path: 'utilisateur/:id/modifier',
+        name: 'AdminUserEdit',
+        component: () => import('@/views/admin/user/AdminUserEditView.vue')
       }
     ]
   },

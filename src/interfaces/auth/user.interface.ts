@@ -4,10 +4,14 @@ export interface User {
   firstName: string
   lastName: string
   birthDate: Date
-  roles: string[]
+  roles: string
 }
 
 export interface UserWithTimestampsInterface extends User {
   createdAt: Date
   updatedAt: Date
+}
+
+export interface UserState {
+  users: UserWithTimestampsInterface[]
 }
