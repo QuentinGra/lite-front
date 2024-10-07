@@ -25,3 +25,12 @@
 .variant-type {
   margin-bottom: 1.5rem;
 }
+
+.user {
+  &-name {
+    margin-bottom: 1rem;
+  }
+  &-email {
+    margin-bottom: 1.5rem;
+  }
+}

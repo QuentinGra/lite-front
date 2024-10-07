@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { deleteUserById } from '@/api/admin/user.api'
-import type { UserWithTimestampsInterface } from '@/interfaces/auth/user.interface'
+import type { User } from '@/interfaces/auth/user.interface'
 
 const router = useRouter()
 
 const props = defineProps<{
-  users: UserWithTimestampsInterface[]
+  users: User[]
 }>()
 
 const emit = defineEmits<{

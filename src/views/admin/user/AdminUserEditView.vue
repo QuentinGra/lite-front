@@ -34,8 +34,6 @@ const loadUser = async (): Promise<void> => {
 }
 
 const saveUserRole = async (): Promise<void> => {
-  console.log(state)
-
   try {
     await updateUser(state.id!, state)
     router.push({ name: 'AdminUser' })
