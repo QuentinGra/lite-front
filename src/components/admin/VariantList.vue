@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import { deleteBookVariantById } from '@/api/admin/variant.api'
 import type { BookVariant } from '@/interfaces/admin/variant.interface'
+import { Edit, Trash } from 'lucide-vue-next'
 
 const router = useRouter()
 
@@ -41,8 +42,12 @@ const deleteBookVariant = async (id: number): Promise<void> => {
         <td>{{ variant.type }}</td>
         <td>{{ variant.enable ? 'Actif' : 'Inactif' }}</td>
         <td>
-          <button @click="editBookVariant(variant.id)" class="button-edit">Modifier</button>
-          <button @click="deleteBookVariant(variant.id)" class="button-delete">Supprimer</button>
+          <button @click="editBookVariant(variant.id)" class="button-edit">
+            <Edit class="icon" :size="16" :stroke-width="2.5" /> Modifier
+          </button>
+          <button @click="deleteBookVariant(variant.id)" class="button-delete">
+            <Trash class="icon" :size="16" :stroke-width="2.5" /> Supprimer
+          </button>
         </td>
       </tr>
     </tbody>

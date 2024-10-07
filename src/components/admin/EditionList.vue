@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import { deleteEditionById } from '@/api/admin/edition.api'
 import type { Edition } from '@/interfaces/admin/edition.interface'
+import { Edit, Trash } from 'lucide-vue-next'
 
 const router = useRouter()
 
@@ -41,8 +42,12 @@ const deleteEdition = async (id: number): Promise<void> => {
         <td>{{ edition.name }}</td>
         <td>{{ edition.enable ? 'Actif' : 'Inactif' }}</td>
         <td>
-          <button @click="editEdition(edition.id)" class="button-edit">Modifier</button>
-          <button @click="deleteEdition(edition.id)" class="button-delete">Supprimer</button>
+          <button @click="editEdition(edition.id)" class="button-edit">
+            <Edit class="icon" :size="16" :stroke-width="2.5" /> Modifier
+          </button>
+          <button @click="deleteEdition(edition.id)" class="button-delete">
+            <Trash class="icon" :size="16" :stroke-width="2.5" /> Supprimer
+          </button>
         </td>
       </tr>
     </tbody>

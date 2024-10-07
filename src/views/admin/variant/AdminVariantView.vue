@@ -3,6 +3,7 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import BookVariantList from '@/components/admin/VariantList.vue'
 import { fetchBookVariants } from '@/api/admin/variant.api'
 import type { BookVariant, VariantState } from '@/interfaces/admin/variant.interface'
+import { Pencil } from 'lucide-vue-next'
 
 const search = ref<string>('')
 const errorMessage = ref<string>('')
@@ -40,7 +41,9 @@ onMounted((): void => {
     <label for="search-input" class="search-label">Rechercher une variante</label>
     <div class="button-container">
       <input type="text" v-model="search" placeholder="Type" class="search-input" />
-      <router-link to="/admin-panel/variant/creer" class="button-create">Créer</router-link>
+      <router-link to="/admin-panel/variant/creer" class="button-create">
+        <Pencil class="icon" :size="16" :stroke-width="2.5" /> Créer
+      </router-link>
     </div>
     <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
     <BookVariantList

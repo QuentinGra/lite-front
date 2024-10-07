@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import { deleteCategoryById } from '@/api/admin/category.api'
 import type { Category } from '@/interfaces/admin/category.interface'
+import { Edit, Trash } from 'lucide-vue-next'
 
 const router = useRouter()
 
@@ -41,8 +42,12 @@ const deleteCategory = async (id: number): Promise<void> => {
         <td>{{ category.name }}</td>
         <td>{{ category.enable ? 'Actif' : 'Inactif' }}</td>
         <td>
-          <button @click="editCategory(category.id)" class="button-edit">Modifier</button>
-          <button @click="deleteCategory(category.id)" class="button-delete">Supprimer</button>
+          <button @click="editCategory(category.id)" class="button-edit">
+            <Edit class="icon" :size="16" :stroke-width="2.5" /> Modifier
+          </button>
+          <button @click="deleteCategory(category.id)" class="button-delete">
+            <Trash class="icon" :size="16" :stroke-width="2.5" /> Supprimer
+          </button>
         </td>
       </tr>
     </tbody>

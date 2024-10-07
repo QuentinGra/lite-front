@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import { deleteAuthorById } from '@/api/admin/author.api'
 import type { Author } from '@/interfaces/admin/author.interface'
+import { Edit, Trash } from 'lucide-vue-next'
 
 const router = useRouter()
 
@@ -41,8 +42,12 @@ const deleteAuthor = async (id: number): Promise<void> => {
         <td>{{ author.lastName }} {{ author.firstName }}</td>
         <td>{{ author.enable ? 'Actif' : 'Inactif' }}</td>
         <td>
-          <button @click="editAuthor(author.id)" class="button-edit">Modifier</button>
-          <button @click="deleteAuthor(author.id)" class="button-delete">Supprimer</button>
+          <button @click="editAuthor(author.id)" class="button-edit">
+            <Edit class="icon" :size="16" :stroke-width="2.5" /> Modifier
+          </button>
+          <button @click="deleteAuthor(author.id)" class="button-delete">
+            <Trash class="icon" :size="16" :stroke-width="2.5" /> Supprimer
+          </button>
         </td>
       </tr>
     </tbody>

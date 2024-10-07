@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import { deleteUserById } from '@/api/admin/user.api'
 import type { User } from '@/interfaces/auth/user.interface'
+import { Edit, Trash } from 'lucide-vue-next'
 
 const router = useRouter()
 
@@ -52,8 +53,12 @@ const formatRoles = (roles: string[]): string => {
         <td>{{ user.email }}</td>
         <td>{{ formatRoles(user.roles) }}</td>
         <td>
-          <button @click="editUser(user.id)" class="button-edit">Modifier</button>
-          <button @click="deleteUser(user.id)" class="button-delete">Supprimer</button>
+          <button @click="editUser(user.id)" class="button-edit">
+            <Edit class="icon" :size="16" :stroke-width="2.5" /> Modifier
+          </button>
+          <button @click="deleteUser(user.id)" class="button-delete">
+            <Trash class="icon" :size="16" :stroke-width="2.5" /> Supprimer
+          </button>
         </td>
       </tr>
     </tbody>
