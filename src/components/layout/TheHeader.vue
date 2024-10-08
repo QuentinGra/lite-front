@@ -29,7 +29,7 @@ const toggleDropdown = (): void => {
         <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/">Acceuil</RouterLink>
         <div v-if="!isUserDefined" class="dropdown" :class="{ 'is-active': isDropdownOpen }">
           <button class="dropdown-trigger" @click="toggleDropdown">
-            <User class="icon" :size="30" color="white" :stroke-width="2.25" />
+            <User class="icon" :size="30" color="white" :stroke-width="2" />
           </button>
           <div class="dropdown-menu">
             <div class="dropdown-content">
