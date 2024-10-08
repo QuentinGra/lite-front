@@ -94,6 +94,21 @@ const routes: Array<RouteRecordRaw> = [
         path: 'utilisateur/:id/modifier',
         name: 'AdminUserEdit',
         component: () => import('@/views/admin/user/AdminUserEditView.vue')
+      },
+      {
+        path: 'livre/creer',
+        name: 'AdminBookCreate',
+        component: () => import('@/views/admin/book/AdminBookCreateView.vue')
+      },
+      {
+        path: 'livres',
+        name: 'AdminBook',
+        component: () => import('@/views/admin/book/AdminBookView.vue')
+      },
+      {
+        path: 'livre/:id/modifier',
+        name: 'AdminBookEdit',
+        component: () => import('@/views/admin/book/AdminBookEditView.vue')
       }
     ]
   },
