@@ -34,6 +34,10 @@ export interface Book {
   enable: boolean
 }
 
+export interface BookState {
+  books: Book[]
+}
+
 export interface BookCreate {
   name: string
   description: string
