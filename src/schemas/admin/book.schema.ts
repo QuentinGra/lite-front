@@ -19,4 +19,15 @@ export const bookSchema = z.object({
   bookVariants: z.array(z.number().int().positive('Les variants de livre sont requis'))
 })
 
+export const bookUpdateSchema = z.object({
+  name: z.string().min(1, 'Le titre du livre est requis'),
+  description: z.string().optional(),
+  enable: z.boolean(),
+  edition: z.number().int().positive("L'édition est requise"),
+  author: z.number().int().positive("L'auteur est requis"),
+  categories: z.array(z.number().int().positive('Les catégories sont requises')),
+  bookVariants: z.array(z.number().int().positive('Les variants de livre sont requis'))
+})
+
 export type BookCreate = z.infer<typeof bookSchema>
+export type BookUpdate = z.infer<typeof bookUpdateSchema>

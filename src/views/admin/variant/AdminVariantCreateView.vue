@@ -14,6 +14,8 @@ const state = reactive<Partial<BookVariant>>({
   enable: false
 })
 
+// TODO: modifier le code pour remplacer la ref par un reactive
+
 const existingVariants = ref<BookVariant[]>([])
 const options = ref([
   { value: 'brocher', label: 'Broché' },

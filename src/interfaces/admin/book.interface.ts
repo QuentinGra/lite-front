@@ -59,3 +59,14 @@ export interface BookCreate {
   categories: number
   bookVariants: number
 }
+
+export interface BookUpdate {
+  id: number
+  name: string
+  description: string
+  enable: boolean
+  edition: number
+  author: number
+  categories: number
+  bookVariants: number
+}
