@@ -41,7 +41,7 @@ onMounted((): void => {
     <label for="search-input" class="search-label">Rechercher un livre</label>
     <div class="button-container">
       <input type="text" v-model="search" placeholder="Titre" class="search-input" />
-      <router-link to="/admin-panel/book/creer" class="button-create">
+      <router-link to="/admin-panel/livre/creer" class="button-create">
         <Pencil class="icon" :size="16" :stroke-width="2.5" /> Créer
       </router-link>
     </div>

@@ -45,6 +45,6 @@ export interface BookCreate {
   enable: boolean
   edition: number
   author: number
-  categories: number[]
-  bookVariants: number[]
+  categories: number
+  bookVariants: number
 }
