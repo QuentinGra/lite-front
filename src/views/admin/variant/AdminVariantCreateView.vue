@@ -14,20 +14,20 @@ const state = reactive<Partial<BookVariant>>({
   enable: false
 })
 
-// TODO: modifier le code pour remplacer la ref par un reactive
-
-const existingVariants = ref<BookVariant[]>([])
-const options = ref([
-  { value: 'brocher', label: 'Broché' },
-  { value: 'poche', label: 'Poche' },
-  { value: 'relier', label: 'Relier' },
-  { value: 'ebook', label: 'Livre électronique' }
-])
+const dataState = reactive({
+  existingVariants: [] as BookVariant[],
+  options: [
+    { value: 'brocher', label: 'Broché' },
+    { value: 'poche', label: 'Poche' },
+    { value: 'relier', label: 'Relier' },
+    { value: 'ebook', label: 'Livre électronique' }
+  ]
+})
 
 const loadExistingVariants = async (): Promise<void> => {
   try {
     const data: BookVariant[] = await fetchBookVariants()
-    existingVariants.value = data
+    dataState.existingVariants = data
     filterOptions()
   } catch (error) {
     errorMessage.value = 'Impossible de charger les variants de livre'
@@ -35,8 +35,11 @@ const loadExistingVariants = async (): Promise<void> => {
 }
 
 const filterOptions = (): void => {
-  const existingTypes = existingVariants.value.map((variant) => variant.type)
-  options.value = options.value.filter((option) => !existingTypes.includes(option.value))
+  const existingTypes = dataState.existingVariants.map((variant) => variant.type)
+  dataState.options = dataState.options.filter((option) => !existingTypes.includes(option.value))
+  if (dataState.options.length === 1) {
+    state.type = dataState.options[0].value
+  }
 }
 
 const saveBookVariant = async (): Promise<void> => {
@@ -68,10 +71,9 @@ const [zodPlugin, submitHandler] = createZodPlugin(bookVariantSchema, saveBookVa
         type="select"
         name="type"
         v-model="state.type"
-        validation="required"
         validation-label="Le type du variant"
         help="Si le type de variant ne figure pas dans la liste ou que la liste est vide c'est que tous les types de variant ont déjà été créés."
-        :options="options"
+        :options="dataState.options"
       />
       <FormKit
         type="checkbox"

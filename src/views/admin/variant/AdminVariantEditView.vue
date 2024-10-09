@@ -17,7 +17,7 @@ const state = reactive<Partial<BookVariant>>({
 })
 
 const loadBookVariant = async (): Promise<void> => {
-  const bookVariantId = Number(route.params.id)
+  const bookVariantId: number = Number(route.params.id)
   try {
     const data: BookVariant = await fetchBookVariantById(bookVariantId)
     Object.assign(state, data)

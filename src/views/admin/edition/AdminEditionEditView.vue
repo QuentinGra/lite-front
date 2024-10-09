@@ -20,7 +20,7 @@ const state = reactive<Partial<Edition>>({
 })
 
 const loadEdition = async (): Promise<void> => {
-  const editionId = Number(route.params.id)
+  const editionId: number = Number(route.params.id)
   try {
     const data: Edition = await fetchEditionById(editionId)
     Object.assign(state, data)
