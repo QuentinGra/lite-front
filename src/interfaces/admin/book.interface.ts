@@ -1,4 +1,5 @@
 interface Category {
+  id: number
   name: string
   createdAt: Date
   updatedAt: Date
@@ -6,6 +7,7 @@ interface Category {
 }
 
 interface Edition {
+  id: number
   name: string
   createdAt: Date
   updatedAt: Date
@@ -13,8 +15,17 @@ interface Edition {
 }
 
 interface Author {
+  id: number
   firstName: string
   lastName: string
+  createdAt: Date
+  updatedAt: Date
+  enable: boolean
+}
+
+interface BookVariant {
+  id: number
+  type: string
   createdAt: Date
   updatedAt: Date
   enable: boolean
@@ -28,7 +39,7 @@ export interface Book {
   categories: Category[]
   edition: Edition
   author: Author
-  bookVariants: []
+  bookVariants: BookVariant[]
   createdAt: Date
   updatedAt: Date
   enable: boolean
