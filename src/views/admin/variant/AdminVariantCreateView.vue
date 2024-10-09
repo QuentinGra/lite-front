@@ -71,6 +71,7 @@ const [zodPlugin, submitHandler] = createZodPlugin(bookVariantSchema, saveBookVa
         type="select"
         name="type"
         v-model="state.type"
+        validation="required"
         validation-label="Le type du variant"
         help="Si le type de variant ne figure pas dans la liste ou que la liste est vide c'est que tous les types de variant ont déjà été créés."
         :options="dataState.options"
