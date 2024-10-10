@@ -33,12 +33,23 @@
 
   &-edit {
     @extend .button-create;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     background-color: color(warning);
     cursor: pointer;
 
     &:hover {
       background-color: color(dark-warning);
+    }
+  }
+
+  &-images {
+    @extend .button-create;
+    margin-right: 0.5rem;
+    background-color: color(info);
+    cursor: pointer;
+
+    &:hover {
+      background-color: color(dark-info);
     }
   }
 

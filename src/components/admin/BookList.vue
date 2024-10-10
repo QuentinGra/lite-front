@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router'
 import { deleteBookById } from '@/api/admin/book.api'
 import type { Book } from '@/interfaces/admin/book.interface'
-import { Edit, Trash } from 'lucide-vue-next'
+import { Edit, Trash, Image } from 'lucide-vue-next'
 
 const router = useRouter()
 
@@ -16,6 +16,10 @@ const emit = defineEmits<{
 
 const editBook = (id: number): void => {
   router.push({ name: 'AdminBookEdit', params: { id } })
+}
+
+const viewImages = (id: number): void => {
+  router.push({ name: 'AdminBookImages', params: { id } })
 }
 
 const deleteBook = async (id: number): Promise<void> => {
@@ -50,6 +54,9 @@ const deleteBook = async (id: number): Promise<void> => {
         <td>
           <button @click="editBook(book.id)" class="button-edit">
             <Edit class="icon" :size="16" :stroke-width="2.5" /> Modifier
+          </button>
+          <button @click="viewImages(book.id)" class="button-images">
+            <Image class="icon" :size="16" :stroke-width="2.5" /> Images
           </button>
           <button @click="deleteBook(book.id)" class="button-delete">
             <Trash class="icon" :size="16" :stroke-width="2.5" /> Supprimer
