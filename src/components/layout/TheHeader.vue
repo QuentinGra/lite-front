@@ -27,12 +27,23 @@ const toggleDropdown = (): void => {
       </div>
       <div :class="['navbar-menu', { 'is-active': isMenuOpen }]">
         <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/">Acceuil</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/livres">Livres</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/categories">Catégories</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/editions">Editions</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/auteurs">Auteurs</RouterLink>
         <div v-if="!isUserDefined" class="dropdown" :class="{ 'is-active': isDropdownOpen }">
           <button class="dropdown-trigger" @click="toggleDropdown">
             <User class="icon" :size="30" color="white" :stroke-width="2" />
           </button>
           <div class="dropdown-menu">
             <div class="dropdown-content">
+              <RouterLink
+                v-if="!hasRole('ROLE_ADMIN') && isUserDefined"
+                to="/profile"
+                class="dropdown-item"
+                @click="toggleDropdown"
+                >Profile</RouterLink
+              >
               <RouterLink to="/connexion" class="dropdown-item" @click="toggleDropdown"
                 >Connexion</RouterLink
               >
