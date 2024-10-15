@@ -106,6 +106,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/admin/book/AdminBookView.vue')
       },
       {
+        path: 'livre/:id/images',
+        name: 'AdminBookImages',
+        component: () => import('@/views/admin/book/AdminBookImagesView.vue')
+      },
+      {
+        path: 'livre/:id/images/creer',
+        name: 'AdminBookImageCreate',
+        component: () => import('@/views/admin/book/AdminBookImageCreateView.vue')
+      },
+      {
         path: 'livre/:id/modifier',
         name: 'AdminBookEdit',
         component: () => import('@/views/admin/book/AdminBookEditView.vue')

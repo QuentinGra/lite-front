@@ -17,9 +17,8 @@ const state = reactive<Partial<AuthorCreate>>({
   image: undefined
 })
 const handleFileChange = (event: Event) => {
-  const input = event.target as HTMLInputElement
-  if (input.files && input.files.length > 0) {
-    const file = input.files[0]
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (file) {
     state.image = file
   }
 }

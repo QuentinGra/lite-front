@@ -15,11 +15,27 @@ $colors: (
   light-secondary: #f9f9f9,
   dark: #1f212a,
   text: #212121,
-  grey: #575960,
-  teal: #008080,
-  dark-teal: #006666,
-  burgundy: #800020,
-  dark-burgundy: #5c0017
+  grey: #575960
+);
+
+$finalColors: (
+  // off-white
+  background: #fafaf9,
+  // deep brown
+  primary: #292524,
+  // medium brown
+  secondary: #57534e,
+  // muted gold
+  accent: #d97706,
+  // light beige
+  muted: #e7e5e4,
+  // admin color
+  info: #17a2b8,
+  info-dark: #117a8b,
+  danger: #dc3545,
+  danger-dark: #c82333,
+  warning: #ffc107,
+  warning-dark: #e0a800
 );
 
 // Breakpoints
