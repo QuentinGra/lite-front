@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useAuth } from '@/composables/useAuth'
-import TheHeader from '@/components/TheHeader.vue'
+import TheHeader from '@/components/layout/TheHeader.vue'
 
 const { checkAuth } = useAuth()
 
-onMounted(async () => {
+onMounted(async (): Promise<void> => {
   await checkAuth()
 })
 </script>
 
 <template>
+  <TheHeader />
   <main>
-    <TheHeader />
     <RouterView />
   </main>
 </template>

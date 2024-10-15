@@ -6,7 +6,7 @@
   }
 
   &-error {
-    color: red;
+    color: color(danger);
     font-weight: bold;
     margin: 1rem 0;
   }
@@ -15,5 +15,22 @@
 .formkit {
   &-wrapper {
     max-width: 100% !important;
+
+    button {
+      background-color: color(dark) !important;
+    }
+  }
+}
+
+.variant-type {
+  margin-bottom: 1.5rem;
+}
+
+.user {
+  &-name {
+    margin-bottom: 1rem;
+  }
+  &-email {
+    margin-bottom: 1.5rem;
   }
 }

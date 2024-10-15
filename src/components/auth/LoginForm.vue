@@ -2,15 +2,15 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { createZodPlugin } from '@formkit/zod'
-import { loginSchema } from '@/schemas/login.schema'
-import type { LoginValues } from '@/interfaces/login.interface'
+import { loginSchema } from '@/schemas/auth/login.schema'
+import type { LoginValues } from '@/interfaces/auth/login.interface'
 import { useAuth } from '@/composables/useAuth'
 
-const errorMessage = ref('')
 const router = useRouter()
 const { login, hasRole } = useAuth()
+const errorMessage = ref<string>('')
 
-const handleLogin = async (values: LoginValues) => {
+const handleLogin = async (values: LoginValues): Promise<void> => {
   try {
     await login(values.username, values.password)
     if (hasRole('ROLE_ADMIN')) {
@@ -31,22 +31,21 @@ const [zodPlugin, submitHandler] = createZodPlugin(loginSchema, handleLogin)
 </script>
 
 <template>
-  <div class="container-login">
-    <h2 class="form-title">Connexion</h2>
-    <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
-    <FormKit type="form" submit-label="Connexion" :plugins="[zodPlugin]" @submit="submitHandler">
-      <FormKit
-        type="email"
-        name="username"
-        validation="required"
-        help="Entrer votre adresse mail"
-      />
-      <FormKit
-        type="password"
-        name="password"
-        validation="required"
-        help="Entrer votre mot de passe"
-      />
-    </FormKit>
-  </div>
+  <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
+  <FormKit type="form" submit-label="Connexion" :plugins="[zodPlugin]" @submit="submitHandler">
+    <FormKit
+      type="email"
+      name="username"
+      validation="required"
+      validation-label="Le mail"
+      help="Entrer votre adresse mail"
+    />
+    <FormKit
+      type="password"
+      name="password"
+      validation="required"
+      validation-label="Le mot de passe"
+      help="Entrer votre mot de passe"
+    />
+  </FormKit>
 </template>

@@ -1,0 +1,65 @@
+.button {
+  &-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+
+    @media (min-width: breakpoint(lg)) {
+      grid-template-columns: 1.8fr 1fr auto;
+    }
+  }
+
+  &-create {
+    grid-column: 3;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: font-size(base);
+    border-radius: border-radius(default);
+    border: none;
+    color: color(light);
+    background-color: color(dark);
+    transition: background-color 0.3s;
+
+    @media (min-width: breakpoint(lg)) {
+      width: 150px;
+      justify-self: end;
+    }
+  }
+
+  &-edit {
+    @extend .button-create;
+    margin-right: 0.5rem;
+    background-color: color(warning);
+    cursor: pointer;
+
+    &:hover {
+      background-color: color(dark-warning);
+    }
+  }
+
+  &-images {
+    @extend .button-create;
+    margin-right: 0.5rem;
+    background-color: color(info);
+    cursor: pointer;
+
+    &:hover {
+      background-color: color(dark-info);
+    }
+  }
+
+  &-delete {
+    @extend .button-create;
+    background-color: color(danger);
+    cursor: pointer;
+
+    &:hover {
+      background-color: color(dark-danger);
+    }
+  }
+}
