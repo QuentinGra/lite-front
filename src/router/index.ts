@@ -125,7 +125,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/:catchAll(.*)*',
     name: 'NotFound',
-    component: () => import('@/views/NotFoundView.vue')
+    component: () => import('@/views/common/NotFoundView.vue')
   }
 ]
 
