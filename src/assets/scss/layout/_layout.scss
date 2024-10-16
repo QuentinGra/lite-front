@@ -1,9 +1,10 @@
 .container {
   max-width: clamp(300px, 75vw, 800px);
+  text-align: center;
+  margin: 0 auto;
 
   &-login {
     padding: 0 1rem;
-    margin: 0 auto;
     text-align: center;
 
     width: clamp(200px, 50vw, 500px);
