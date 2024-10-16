@@ -10,6 +10,16 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
+    path: '/livres',
+    name: 'Books',
+    component: () => import('@/views/public/book/BooksView.vue')
+  },
+  {
+    path: '/livre/:id',
+    name: 'BookDetail',
+    component: () => import('@/views/public/book/BookDetailView.vue')
+  },
+  {
     path: '/connexion',
     name: 'Login',
     component: () => import('@/views/auth/LoginView.vue')
