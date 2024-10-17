@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { deleteImageById } from '@/api/admin/image.api'
-import { defineProps } from 'vue'
 import type { Image } from '@/interfaces/admin/image.interface'
 import { Trash } from 'lucide-vue-next'
 
