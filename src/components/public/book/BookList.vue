@@ -26,8 +26,6 @@ const loadBooks = async (): Promise<void> => {
   }
 }
 
-// TODO: trouver une solution pour les afficher les images
-
 onMounted(() => {
   loadBooks()
 })
@@ -42,7 +40,7 @@ onMounted(() => {
         <RouterLink :to="{ name: 'BookDetail', params: { id: book.id } }" class="book-link">
           <img
             v-if="bookImages[book.id] && bookImages[book.id].length"
-            :src="IMAGE_PATH + bookImages[book.id][0]"
+            :src="IMAGE_PATH + bookImages[book.id][0].imageName"
             alt="Book cover"
             class="book-image"
           />
@@ -55,55 +53,3 @@ onMounted(() => {
     </ul>
   </div>
 </template>
-
-<style scoped lang="scss">
-.container {
-  padding: 20px;
-
-  h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-
-  .book-list {
-    list-style-type: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-
-  .book-item {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.2s;
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-
-  .book-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-
-  .book-info {
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .book-title {
-    font-size: 1.2em;
-    margin: 10px 0 5px;
-  }
-
-  .book-author {
-    color: #6c757d;
-  }
-}
-</style>
