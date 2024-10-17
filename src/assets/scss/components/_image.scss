@@ -1,7 +1,9 @@
+@use '../abstracts/function' as fn;
+
 .image-thumbnail {
   width: 150px;
   height: auto;
-  border-radius: border-radius(default);
+  border-radius: fn.border-radius(default);
   object-fit: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;

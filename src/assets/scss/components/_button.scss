@@ -1,3 +1,5 @@
+@use '../abstracts/function' as fn;
+
 .button {
   &-container {
     display: grid;
@@ -6,7 +8,7 @@
     align-items: center;
     margin-bottom: 10px;
 
-    @media (min-width: breakpoint(lg)) {
+    @media (min-width: fn.breakpoint(lg)) {
       grid-template-columns: 1.8fr 1fr auto;
     }
   }
@@ -18,14 +20,14 @@
     display: inline-block;
     padding: 10px 20px;
     margin: 10px 0;
-    font-size: font-size(base);
-    border-radius: border-radius(default);
+    font-size: fn.font-size(base);
+    border-radius: fn.border-radius(default);
     border: none;
-    color: color(light);
-    background-color: color(dark);
+    color: fn.color(light);
+    background-color: fn.color(dark);
     transition: background-color 0.3s;
 
-    @media (min-width: breakpoint(lg)) {
+    @media (min-width: fn.breakpoint(lg)) {
       width: 150px;
       justify-self: end;
     }
@@ -34,32 +36,32 @@
   &-edit {
     @extend .button-create;
     margin-right: 0.5rem;
-    background-color: color(warning);
+    background-color: fn.color(warning);
     cursor: pointer;
 
     &:hover {
-      background-color: color(dark-warning);
+      background-color: fn.color(dark-warning);
     }
   }
 
   &-images {
     @extend .button-create;
     margin-right: 0.5rem;
-    background-color: color(info);
+    background-color: fn.color(info);
     cursor: pointer;
 
     &:hover {
-      background-color: color(dark-info);
+      background-color: fn.color(dark-info);
     }
   }
 
   &-delete {
     @extend .button-create;
-    background-color: color(danger);
+    background-color: fn.color(danger);
     cursor: pointer;
 
     &:hover {
-      background-color: color(dark-danger);
+      background-color: fn.color(dark-danger);
     }
   }
 }

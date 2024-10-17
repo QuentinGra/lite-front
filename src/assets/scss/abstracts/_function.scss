@@ -1,15 +1,18 @@
+@use 'sass:map';
+@use '../abstracts/variable' as *;
+
 @function color($name) {
-  @return map-get($colors, $name);
+  @return map.get($colors, $name);
 }
 
 @function breakpoint($size) {
-  @return map-get($breakpoints, $size);
+  @return map.get($breakpoints, $size);
 }
 
 @function border-radius($size) {
-  @return map-get($border-radius, $size);
+  @return map.get($border-radius, $size);
 }
 
 @function font-size($size) {
-  @return map-get($font-sizes, $size);
+  @return map.get($font-sizes, $size);
 }

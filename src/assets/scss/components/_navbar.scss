@@ -1,13 +1,15 @@
+@use '../abstracts/function' as fn;
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: color(dark);
-  color: color(light);
+  background-color: fn.color(dark);
+  color: fn.color(light);
 
   &-brand a {
-    color: color(light);
+    color: fn.color(light);
     text-decoration: none;
     font-size: 1.5rem;
   }
@@ -21,7 +23,7 @@
     %span-design {
       height: 2px;
       width: 25px;
-      background-color: color(light);
+      background-color: fn.color(light);
       display: block;
       pointer-events: none;
     }
@@ -52,7 +54,7 @@
     gap: 1rem;
 
     a {
-      color: color(light);
+      color: fn.color(light);
       text-decoration: none;
       position: relative;
       display: inline-block;
@@ -60,7 +62,7 @@
     }
   }
 
-  @media (max-width: breakpoint(md)) {
+  @media (max-width: fn.breakpoint(md)) {
     &-burger {
       display: flex;
 
@@ -94,7 +96,7 @@
       display: none;
       flex-direction: column;
       gap: 0;
-      background-color: color(dark);
+      background-color: fn.color(dark);
       z-index: 1;
       position: absolute;
       top: 60px;
@@ -102,7 +104,7 @@
       width: 100%;
       height: calc(100vh - 60px);
       text-align: center;
-      border-top: 1px solid color(light);
+      border-top: 1px solid fn.color(light);
 
       &.is-active {
         display: flex;
@@ -110,7 +112,7 @@
 
       a {
         padding: 1rem;
-        border-top: 1px solid color(dark);
+        border-top: 1px solid fn.color(dark);
       }
     }
   }
@@ -131,8 +133,8 @@
   &-menu {
     display: none;
     position: absolute;
-    border-radius: border-radius(default);
-    background-color: color(light);
+    border-radius: fn.border-radius(default);
+    background-color: fn.color(light);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
     right: 0;
@@ -146,15 +148,15 @@
     padding: 16px 16px;
     text-decoration: none;
     display: block;
-    color: color(dark) !important;
+    color: fn.color(dark) !important;
 
     &:hover {
-      background-color: color(light-secondary);
-      border-radius: border-radius(default);
+      background-color: fn.color(light-secondary);
+      border-radius: fn.border-radius(default);
     }
   }
 
-  @media (max-width: breakpoint(md)) {
+  @media (max-width: fn.breakpoint(md)) {
     display: none;
   }
 }
@@ -163,17 +165,17 @@
   &-menu {
     display: none;
 
-    @media (max-width: breakpoint(md)) {
+    @media (max-width: fn.breakpoint(md)) {
       display: block;
     }
   }
 
   &-item {
-    @media (max-width: breakpoint(md)) {
+    @media (max-width: fn.breakpoint(md)) {
       padding: 16px 16px;
       text-decoration: none;
       display: block !important;
-      color: color(light);
+      color: fn.color(light);
     }
   }
 }

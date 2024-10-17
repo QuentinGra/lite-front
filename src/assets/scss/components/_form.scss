@@ -1,3 +1,5 @@
+@use '../abstracts/function' as fn;
+
 .form {
   &-title {
     font-size: 1.5rem;
@@ -6,7 +8,7 @@
   }
 
   &-error {
-    color: color(danger);
+    color: fn.color(danger);
     font-weight: bold;
     margin: 1rem 0;
   }
@@ -17,7 +19,7 @@
     max-width: 100% !important;
 
     button {
-      background-color: color(dark) !important;
+      background-color: fn.color(dark) !important;
     }
   }
 }
