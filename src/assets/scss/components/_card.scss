@@ -1,0 +1,43 @@
+@use '../abstracts/function' as fn;
+
+.card {
+  background-color: #e7e5e4;
+  border-radius: fn.border-radius(default);
+  overflow: hidden;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+
+  &-info {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  &-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: fn.border-radius(default);
+  }
+
+  &-title {
+    font-size: fn.font-size(medium);
+    margin-bottom: 10px;
+  }
+
+  &-author {
+    font-size: fn.font-size(small);
+    color: fn.color(grey);
+  }
+}

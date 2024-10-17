@@ -7,15 +7,17 @@
 @use 'base/base';
 
 // Components
-@use 'components/navbar';
 @use 'components/form';
-@use 'components/sidebar';
 @use 'components/button';
 @use 'components/input';
 @use 'components/table';
 @use 'components/image';
+@use 'components/card';
 
 // Layout
 @use 'layout/layout';
+@use 'layout/sidebar';
+@use 'layout/navbar';
 
 // Pages
+@use 'pages/book';
