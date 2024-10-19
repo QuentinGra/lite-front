@@ -1,0 +1,128 @@
+@use '../abstracts/function' as fn;
+
+// Placeholders
+%flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-detail {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+
+  @media (max-width: fn.breakpoint(md)) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  &-left {
+    @extend %flex-column;
+  }
+
+  &-right {
+    @extend %flex-column;
+    text-align: left;
+  }
+
+  &-add-to-list {
+    margin: 1rem 0rem 1rem 0rem;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: fn.border-radius(default);
+    cursor: pointer;
+  }
+
+  &-rate-book {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  &-star {
+    color: #ccc;
+    transition: color 0.2s;
+    cursor: pointer;
+
+    &-filled {
+      color: #ffcc00;
+    }
+  }
+
+  &-title {
+    font-size: fn.font-size(x-large);
+    margin-bottom: 10px;
+  }
+
+  &-author {
+    font-size: fn.font-size(medium);
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  &-description {
+    font-size: fn.font-size(base);
+    margin-bottom: 20px;
+  }
+
+  &-variants {
+    @extend %flex-wrap;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+
+  &-variant {
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: fn.border-radius(default);
+    font-size: 0.9em;
+    color: #333;
+  }
+
+  &-categories {
+    @extend %flex-wrap;
+    gap: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+
+    a {
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &-category {
+    background-color: #f4f4f4;
+    padding: 5px 10px;
+    border-radius: fn.border-radius(default);
+  }
+
+  &-edition {
+    font-size: fn.font-size(base);
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  &-date {
+    font-size: fn.font-size(base);
+    color: #666;
+  }
+
+  &-info {
+    font-style: italic;
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 0.8em;
+  }
+}

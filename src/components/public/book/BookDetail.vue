@@ -52,12 +52,15 @@ onMounted(() => {
     <div v-if="book" class="book-detail">
       <div class="book-detail-left">
         <img v-if="bookImage" :src="bookImage" alt="Book cover" class="book-image" />
-        <button class="add-to-list">Ajouter à la liste de lecture</button>
-        <div class="rate-book">
+        <button class="book-detail-add-to-list">Ajouter à la liste de lecture</button>
+        <div class="book-detail-rate-book">
           <Star
             v-for="star in 5"
             :key="star"
-            :class="['star', { 'star-filled': star <= (hoverRating || rating) }]"
+            :class="[
+              'book-detail-star',
+              { 'book-detail-star-filled': star <= (hoverRating || rating) }
+            ]"
             :size="28"
             :stroke-width="2"
             @click="setRating(star)"
@@ -67,153 +70,31 @@ onMounted(() => {
         </div>
       </div>
       <div class="book-detail-right">
-        <h1 class="book-title">{{ book.name }}</h1>
-        <p class="book-author">
-          <span class="book-info">Auteur</span>{{ book.author.lastName }}
+        <h1 class="book-detail-title">{{ book.name }}</h1>
+        <p class="book-detail-author">
+          <span class="book-detail-info">Auteur</span>{{ book.author.lastName }}
           {{ book.author.firstName }}
         </p>
-        <div class="book-variants">
-          <span v-for="variant in book.bookVariants" :key="variant.id" class="book-variant">
+        <div class="book-detail-variants">
+          <span v-for="variant in book.bookVariants" :key="variant.id" class="book-detail-variant">
             {{ capitalizeFirstLetter(variant.type) }}
           </span>
         </div>
-        <p class="book-description">{{ book.description }}</p>
-        <div class="book-categories">
-          <span v-for="category in book.categories" :key="category.id" class="book-category">
+        <p class="book-detail-description">{{ book.description }}</p>
+        <div class="book-detail-categories">
+          <span v-for="category in book.categories" :key="category.id" class="book-detail-category">
             <RouterLink :to="{ name: 'CategoryDetail', query: { category: category.id } }">{{
               category.name
             }}</RouterLink>
           </span>
         </div>
-        <p class="book-edition">
-          <span class="book-info">Maison d'édition</span>{{ book.edition.name }}
+        <p class="book-detail-edition">
+          <span class="book-detail-info">Maison d'édition</span>{{ book.edition.name }}
         </p>
-        <p class="book-date">
-          <span class="book-info">Date d'édition</span>{{ formatDate(book.dateEdition) }}
+        <p class="book-detail-date">
+          <span class="book-detail-info">Date d'édition</span>{{ formatDate(book.dateEdition) }}
         </p>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped lang="scss">
-.book-detail {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 4rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
-.book-detail-left {
-  display: flex;
-  flex-direction: column;
-}
-
-.book-detail-right {
-  @extend .book-detail-left;
-  text-align: left;
-}
-
-.add-to-list {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.rate-book {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.star {
-  cursor: pointer;
-  color: #ccc;
-  transition: color 0.2s;
-}
-
-.star-filled {
-  color: #ffcc00;
-}
-
-.book-title {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.book-author {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-.book-description {
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-
-.book-variants {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 1rem;
-}
-
-.book-variant {
-  background-color: #e0e0e0;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.9em;
-  color: #333;
-}
-
-.book-categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 1rem;
-  margin-bottom: 1.5rem;
-
-  a {
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-}
-
-.book-category {
-  background-color: #f4f4f4;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.book-edition {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.book-date {
-  font-size: 1rem;
-  color: #666;
-}
-
-.book-info {
-  font-style: italic;
-  font-weight: bold;
-  margin-right: 5px;
-  font-size: 0.8em;
-}
-</style>
