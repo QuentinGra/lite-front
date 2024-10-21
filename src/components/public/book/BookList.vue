@@ -14,7 +14,7 @@ const errorMessage = ref<string>('')
 
 const filteredBooks = computed<Book[]>(() => {
   return books.value.filter((book: Book) =>
-    book.name.toLowerCase().includes(search.value.toLowerCase())
+    book.name.toLowerCase().startsWith(search.value.toLowerCase())
   )
 })
 
@@ -39,36 +39,34 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
-    <h1 class="page-title">Catalogue des Livres</h1>
-    <div class="container-search">
-      <label for="search-input" class="search-label">Rechercher un livre</label>
-      <input type="text" v-model="search" placeholder="Titre" class="search-input" />
-    </div>
-    <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
-    <ul class="book-list">
-      <li v-for="book in filteredBooks" :key="book.id" class="book-item">
-        <RouterLink :to="{ name: 'BookDetail', params: { id: book.id } }" class="book-link">
-          <img
-            v-if="bookImages[book.id] && bookImages[book.id].length"
-            :src="IMAGE_PATH + bookImages[book.id][0].imageName"
-            alt="Book cover"
-            class="book-image"
-          />
-          <div class="book-info">
-            <h2 class="book-title">{{ book.name }}</h2>
-            <p class="book-author">{{ book.author.lastName }} {{ book.author.firstName }}</p>
-          </div>
-        </RouterLink>
-      </li>
-    </ul>
+  <h1 class="page-title">Catalogue des Livres</h1>
+  <div class="container-search">
+    <label for="search-input" class="search-label">Rechercher un livre</label>
+    <input type="text" v-model="search" placeholder="Titre" class="search-input" />
   </div>
+  <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
+  <ul class="book-list">
+    <li v-for="book in filteredBooks" :key="book.id" class="book-item">
+      <RouterLink :to="{ name: 'BookDetail', params: { id: book.id } }" class="book-link">
+        <img
+          v-if="bookImages[book.id] && bookImages[book.id].length"
+          :src="IMAGE_PATH + bookImages[book.id][0].imageName"
+          alt="Book cover"
+          class="book-image"
+        />
+        <div class="book-info">
+          <h2 class="book-title">{{ book.name }}</h2>
+          <p class="book-author">{{ book.author.lastName }} {{ book.author.firstName }}</p>
+        </div>
+      </RouterLink>
+    </li>
+  </ul>
 </template>
 
+<!-- TODO: déporter le style dans le fichier -->
 <style lang="scss" scoped>
 .page-title {
   font-size: 1.7rem;
-  text-align: left;
 }
 
 .container-search {
@@ -85,7 +83,7 @@ onMounted(() => {
 
   .search-input {
     width: 100%;
-    max-width: 400px;
+    max-width: 550px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
