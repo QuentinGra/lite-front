@@ -29,8 +29,6 @@ const toggleDropdown = (): void => {
         <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/">Acceuil</RouterLink>
         <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/livres">Livres</RouterLink>
         <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/categories">Catégories</RouterLink>
-        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/editions">Editions</RouterLink>
-        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/auteurs">Auteurs</RouterLink>
         <div v-if="!isUserDefined" class="dropdown" :class="{ 'is-active': isDropdownOpen }">
           <button class="dropdown-trigger" @click="toggleDropdown">
             <User class="icon" :size="30" color="white" :stroke-width="2" />

@@ -6,6 +6,7 @@ import { fetchImagesByBookId } from '@/api/admin/image.api'
 import { formatDate } from '@/utils/date.utils'
 import { capitalizeFirstLetter } from '@/utils/string.utils'
 import { Star } from 'lucide-vue-next'
+import { useAuth } from '@/composables/useAuth'
 import type { Book } from '@/interfaces/admin/book.interface'
 import type { Image } from '@/interfaces/admin/image.interface'
 
@@ -20,7 +21,13 @@ const errorMessage = ref<string>('')
 const rating = ref<number>(0)
 const hoverRating = ref<number>(0)
 
+const { isUserDefined } = useAuth()
+
 const setRating = (value: number): void => {
+  if (!isUserDefined.value) {
+    router.push({ name: 'Login' })
+    return
+  }
   rating.value = value
 }
 
