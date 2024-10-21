@@ -5,8 +5,8 @@ import { fetchBookById } from '@/api/admin/book.api'
 import { fetchImagesByBookId } from '@/api/admin/image.api'
 import { formatDate } from '@/utils/date.utils'
 import { capitalizeFirstLetter } from '@/utils/string.utils'
-import { Star } from 'lucide-vue-next'
 import { useAuth } from '@/composables/useAuth'
+import { Star } from 'lucide-vue-next'
 import type { Book } from '@/interfaces/admin/book.interface'
 import type { Image } from '@/interfaces/admin/image.interface'
 
@@ -29,6 +29,8 @@ const setRating = (value: number): void => {
     return
   }
   rating.value = value
+
+  // TODO: add in database
 }
 
 const setHoverRating = (value: number): void => {
@@ -53,6 +55,7 @@ onMounted(() => {
 })
 </script>
 
+<!-- TODO: ajouter lien vers auteur et maison d'édition -->
 <template>
   <div class="container">
     <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
