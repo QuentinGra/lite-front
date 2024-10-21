@@ -1,15 +1,5 @@
 @use '../abstracts/function' as fn;
-
-// Placeholders
-%flex-wrap {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-%flex-column {
-  display: flex;
-  flex-direction: column;
-}
+@use '../abstracts/placeholder' as *;
 
 .book-detail {
   display: grid;
@@ -92,6 +82,8 @@
     border-bottom: 1px solid #ccc;
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
+
+    // TODO: add hover effect to badge color
 
     a {
       transition: transform 0.2s;

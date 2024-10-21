@@ -8,8 +8,6 @@ import { loginUser } from '@/api/auth/login.api'
 import { logoutUser } from '@/api/auth/logout.api'
 import type { User } from '@/interfaces/auth/user.interface'
 
-// TODO: Trouver une solution pour ne pas avoir à créer un cookie LOGIN
-
 /**
  * A composable function to handle user authentication.
  *
