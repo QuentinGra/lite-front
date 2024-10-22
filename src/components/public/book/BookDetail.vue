@@ -50,61 +50,59 @@ const loadBook = async (): Promise<void> => {
   }
 }
 
-onMounted(() => {
+onMounted((): void => {
   loadBook()
 })
 </script>
 
 <!-- TODO: ajouter lien vers auteur et maison d'édition -->
 <template>
-  <div class="container">
-    <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
-    <div v-if="book" class="book-detail">
-      <div class="book-detail-left">
-        <img v-if="bookImage" :src="bookImage" alt="Book cover" class="book-image" />
-        <button class="book-detail-add-to-list">Ajouter à la liste de lecture</button>
-        <div class="book-detail-rate-book">
-          <Star
-            v-for="star in 5"
-            :key="star"
-            :class="[
-              'book-detail-star',
-              { 'book-detail-star-filled': star <= (hoverRating || rating) }
-            ]"
-            :size="28"
-            :stroke-width="2"
-            @click="setRating(star)"
-            @mouseover="setHoverRating(star)"
-            @mouseleave="setHoverRating(0)"
-          />
-        </div>
+  <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
+  <div v-if="book" class="book-detail">
+    <div class="book-detail-left">
+      <img v-if="bookImage" :src="bookImage" alt="Book cover" class="book-image" />
+      <button class="book-detail-add-to-list">Ajouter à la liste de lecture</button>
+      <div class="book-detail-rate-book">
+        <Star
+          v-for="star in 5"
+          :key="star"
+          :class="[
+            'book-detail-star',
+            { 'book-detail-star-filled': star <= (hoverRating || rating) }
+          ]"
+          :size="28"
+          :stroke-width="2"
+          @click="setRating(star)"
+          @mouseover="setHoverRating(star)"
+          @mouseleave="setHoverRating(0)"
+        />
       </div>
-      <div class="book-detail-right">
-        <h1 class="book-detail-title">{{ book.name }}</h1>
-        <p class="book-detail-author">
-          <span class="book-detail-info">Auteur</span>{{ book.author.lastName }}
-          {{ book.author.firstName }}
-        </p>
-        <div class="book-detail-variants">
-          <span v-for="variant in book.bookVariants" :key="variant.id" class="book-detail-variant">
-            {{ capitalizeFirstLetter(variant.type) }}
-          </span>
-        </div>
-        <p class="book-detail-description">{{ book.description }}</p>
-        <div class="book-detail-categories">
-          <span v-for="category in book.categories" :key="category.id" class="book-detail-category">
-            <RouterLink :to="{ name: 'CategoryDetail', query: { category: category.id } }">{{
-              category.name
-            }}</RouterLink>
-          </span>
-        </div>
-        <p class="book-detail-edition">
-          <span class="book-detail-info">Maison d'édition</span>{{ book.edition.name }}
-        </p>
-        <p class="book-detail-date">
-          <span class="book-detail-info">Date d'édition</span>{{ formatDate(book.dateEdition) }}
-        </p>
+    </div>
+    <div class="book-detail-right">
+      <h1 class="book-detail-title">{{ book.name }}</h1>
+      <p class="book-detail-author">
+        <span class="book-detail-info">Auteur</span>{{ book.author.lastName }}
+        {{ book.author.firstName }}
+      </p>
+      <div class="book-detail-variants">
+        <span v-for="variant in book.bookVariants" :key="variant.id" class="book-detail-variant">
+          {{ capitalizeFirstLetter(variant.type) }}
+        </span>
       </div>
+      <p class="book-detail-description">{{ book.description }}</p>
+      <div class="book-detail-categories">
+        <span v-for="category in book.categories" :key="category.id" class="book-detail-category">
+          <RouterLink :to="{ name: 'CategoryDetail', query: { category: category.id } }">{{
+            category.name
+          }}</RouterLink>
+        </span>
+      </div>
+      <p class="book-detail-edition">
+        <span class="book-detail-info">Maison d'édition</span>{{ book.edition.name }}
+      </p>
+      <p class="book-detail-date">
+        <span class="book-detail-info">Date d'édition</span>{{ formatDate(book.dateEdition) }}
+      </p>
     </div>
   </div>
 </template>

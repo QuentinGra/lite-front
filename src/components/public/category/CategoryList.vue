@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { fetchCategories } from '@/api/admin/category.api'
 import { BookOpen, Rocket, Fingerprint, BookType, Flame, HelpCircle, Heart } from 'lucide-vue-next'
 import type { Category } from '@/interfaces/admin/category.interface'
 import type { FunctionalComponent } from 'vue'
 import type { LucideProps } from 'lucide-vue-next'
 
+const router = useRouter()
 const search = ref<string>('')
 const categories = ref<Category[]>([])
 const errorMessage = ref<string>('')
@@ -42,6 +44,10 @@ const loadCategories = async (): Promise<void> => {
   }
 }
 
+const navigateToCategoryDetail = (categoryId: number): void => {
+  router.push({ name: 'CategoryDetail', params: { id: categoryId } })
+}
+
 onMounted(() => {
   loadCategories()
 })
@@ -66,7 +72,9 @@ onMounted(() => {
         <h2 class="category-card-title">{{ category.name }}</h2>
       </div>
       <p class="category-card-description">{{ category.description }}</p>
-      <button class="category-card-button">Explore {{ category.name }}</button>
+      <button @click="navigateToCategoryDetail(category.id)" class="category-card-button">
+        Explorer {{ category.name }}
+      </button>
     </div>
   </div>
 
