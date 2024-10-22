@@ -1,0 +1,104 @@
+@use '../abstracts/function' as fn;
+@use '../components/card';
+
+.categories {
+  @media (max-width: fn.breakpoint(sm)) {
+    padding: 1rem;
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+
+    @media (min-width: fn.breakpoint(md)) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: fn.breakpoint(lg)) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &-title {
+    font-size: fn.font-size(large);
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 2rem;
+
+    @media (max-width: fn.breakpoint(sm)) {
+      font-size: 1.75rem;
+    }
+  }
+
+  &-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &-search {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: fn.border-radius(default);
+    font-size: fn.font-size(base);
+    flex-grow: 1;
+  }
+
+  &-no-results {
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+    margin-top: 1rem;
+  }
+}
+
+.category {
+  &-card {
+    @extend .card;
+
+    &-header {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem 1.5rem 0.5rem;
+    }
+
+    &-icon {
+      width: 2rem;
+      margin-right: 1rem;
+      color: #3b82f6;
+    }
+
+    &-title {
+      margin-bottom: 0;
+      font-size: fn.font-size(medium);
+      font-weight: bold;
+      color: inherit;
+
+      @media (max-width: fn.breakpoint(sm)) {
+        font-size: 1.1rem;
+      }
+    }
+
+    &-description {
+      padding: 0 1.5rem 1.5rem;
+      text-align: left;
+      color: #4b5563;
+      flex-grow: 1;
+      font-size: fn.font-size(small);
+      line-height: 1.5;
+
+      @media (max-width: fn.breakpoint(sm)) {
+        font-size: fn.font-size(x-small);
+      }
+    }
+
+    &-button {
+      @extend .card-button;
+
+      @media (max-width: fn.breakpoint(sm)) {
+        font-size: fn.font-size(small);
+      }
+    }
+  }
+}
