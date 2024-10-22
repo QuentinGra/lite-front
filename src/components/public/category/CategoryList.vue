@@ -12,12 +12,18 @@ import {
   Heart
 } from 'lucide-vue-next'
 import type { Category } from '@/interfaces/admin/category.interface'
+import type { FunctionalComponent } from 'vue'
+import type { LucideProps } from 'lucide-vue-next'
 
 const search = ref<string>('')
 const categories = ref<Category[]>([])
 const errorMessage = ref<string>('')
 
-const categoryIcons = {
+interface CategoryIcons {
+  [key: string]: FunctionalComponent<LucideProps>
+}
+
+const categoryIcons: CategoryIcons = {
   Classique: BookOpen,
   Rommance: Heart,
   'Science Fiction': Rocket,
@@ -26,7 +32,7 @@ const categoryIcons = {
   Fantaisie: Flame
 }
 
-const getCategoryIcon = (categoryName) => {
+const getCategoryIcon = (categoryName: string): FunctionalComponent<LucideProps> => {
   return categoryIcons[categoryName] || HelpCircle
 }
 
@@ -93,8 +99,7 @@ onMounted(() => {
   margin-bottom: 2rem;
 }
 
-.categories-search,
-.categories-select {
+.categories-search {
   padding: 0.5rem;
   border: 1px solid #d1d5db;
   border-radius: 0.25rem;
