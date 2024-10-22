@@ -1,20 +1,24 @@
 @use '../abstracts/function' as fn;
+@use '../abstracts/placeholder' as *;
 
 .card {
-  background-color: #e7e5e4;
-  border-radius: fn.border-radius(default);
+  background-color: #ffffff;
+  border-radius: fn.border-radius(medium);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.2s;
+  @extend %flex-column;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
   &-link {
     text-decoration: none;
     color: inherit;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     padding-bottom: 10px;
   }
@@ -22,6 +26,8 @@
   &-info {
     text-align: center;
     margin-top: 10px;
+    padding: 0 1.5rem 1.5rem;
+    flex-grow: 1;
   }
 
   &-image {
@@ -39,5 +45,21 @@
   &-author {
     font-size: fn.font-size(small);
     color: fn.color(grey);
+  }
+
+  &-button {
+    background-color: #3b82f6;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: fn.font-size(base);
+
+    &:hover {
+      background-color: #2563eb;
+    }
   }
 }

@@ -1,6 +1,7 @@
 // Abstracts
 @use 'abstracts/variable';
 @use 'abstracts/function';
+@use 'abstracts/placeholder';
 
 // Base
 @use 'base/reset';
@@ -20,5 +21,5 @@
 @use 'layout/navbar';
 
 // Pages
-@use 'pages/book';
+@use 'pages/bookList';
 @use 'pages/bookDetail';
