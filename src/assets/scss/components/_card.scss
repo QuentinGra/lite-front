@@ -1,5 +1,5 @@
-@use '../abstracts/function' as fn;
-@use '../abstracts/placeholder' as *;
+@use '../utils/function' as fn;
+@use '../utils/placeholder' as *;
 
 .card {
   background-color: #ffffff;

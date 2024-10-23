@@ -1,7 +1,7 @@
 // Abstracts
-@use 'abstracts/variable';
-@use 'abstracts/function';
-@use 'abstracts/placeholder';
+@use 'utils/variable';
+@use 'utils/function';
+@use 'utils/placeholder';
 
 // Base
 @use 'base/reset';

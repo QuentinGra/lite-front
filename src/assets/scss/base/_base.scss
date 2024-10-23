@@ -1,5 +1,5 @@
-@use '../abstracts/variable';
-@use '../abstracts/function' as fn;
+@use '../utils/variable';
+@use '../utils/function' as fn;
 
 body,
 html {
