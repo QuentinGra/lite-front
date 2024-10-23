@@ -30,4 +30,18 @@ onMounted((): void => {
 
 <template>
   <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
+  <div v-if="category" class="category-detail">
+    <h1 class="category-detail-title">{{ category.name }}</h1>
+    <p class="category-detail-description">{{ category.description }}</p>
+    <div class="book-grid">
+      <div v-if="category.books" v-for="book in category.books" :key="book.id" class="book-item">
+        <!-- TODO: add img -->
+        <div class="book-info">
+          <h2 class="book-info-title">{{ book.name }}</h2>
+          <p class="book-info-author">{{ book.author.lastName }} {{ book.author.firstName }}</p>
+        </div>
+        <button @click="navigateToBookDetail(book.id)" class="book-button">Voir les Détails</button>
+      </div>
+    </div>
+  </div>
 </template>
