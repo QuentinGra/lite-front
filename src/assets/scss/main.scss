@@ -1,8 +1,3 @@
-// Abstracts
-@use 'utils/variable';
-@use 'utils/function';
-@use 'utils/placeholder';
-
 // Base
 @use 'base/reset';
 @use 'base/base';
@@ -13,7 +8,6 @@
 @use 'components/input';
 @use 'components/table';
 @use 'components/image';
-@use 'components/card';
 
 // Layout
 @use 'layout/layout';
