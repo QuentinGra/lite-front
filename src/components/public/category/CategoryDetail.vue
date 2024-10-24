@@ -23,6 +23,10 @@ const loadCategory = async (): Promise<void> => {
   }
 }
 
+const navigateToBookDetail = (bookId: number): void => {
+  router.push({ name: 'BookDetail', params: { id: bookId } })
+}
+
 onMounted((): void => {
   loadCategory()
 })
@@ -35,7 +39,7 @@ onMounted((): void => {
     <p class="category-detail-description">{{ category.description }}</p>
     <div class="book-grid">
       <div v-if="category.books" v-for="book in category.books" :key="book.id" class="book-item">
-        <!-- TODO: add img -->
+        <img :src="IMAGE_PATH + book.bookImages[0].imageName" alt="book.name" class="book-image" />
         <div class="book-info">
           <h2 class="book-info-title">{{ book.name }}</h2>
           <p class="book-info-author">{{ book.author.lastName }} {{ book.author.firstName }}</p>
