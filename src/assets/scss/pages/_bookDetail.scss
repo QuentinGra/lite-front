@@ -82,22 +82,13 @@
     border-bottom: 1px solid #ccc;
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
-
-    // TODO: add hover effect to badge color
-
-    a {
-      transition: transform 0.2s;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
   }
 
   &-category {
     background-color: #f4f4f4;
     padding: 5px 10px;
     border-radius: fn.border-radius(default);
+    cursor: pointer;
   }
 
   &-edition {

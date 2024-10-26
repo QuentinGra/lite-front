@@ -4,14 +4,12 @@ import { useRouter } from 'vue-router'
 import { fetchBooks } from '@/api/admin/book.api'
 import { fetchImagesByBookId } from '@/api/admin/image.api'
 import type { Book } from '@/interfaces/admin/book.interface'
-import type { Image } from '@/interfaces/admin/image.interface'
 
 const IMAGE_PATH = import.meta.env.VITE_IMAGE_URL_LOCAL
 
 const router = useRouter()
 const search = ref<string>('')
 const books = ref<Book[]>([])
-const bookImages = ref<{ [key: number]: Image[] }>({})
 const errorMessage = ref<string>('')
 
 const filteredBooks = computed<Book[]>(() => {
@@ -24,12 +22,6 @@ const loadBooks = async (): Promise<void> => {
   try {
     const bookList: Book[] = await fetchBooks()
     books.value = bookList
-
-    const imagePromises = bookList.map(async (book) => {
-      const images: Image[] = await fetchImagesByBookId(book.id)
-      bookImages.value[book.id] = images
-    })
-    await Promise.all(imagePromises)
   } catch (error) {
     errorMessage.value = 'Impossible de charger les livres'
   }
@@ -52,12 +44,7 @@ onMounted(() => {
   <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
   <div class="book-grid">
     <div v-for="book in filteredBooks" :key="book.id" class="book-item">
-      <img
-        v-if="bookImages[book.id] && bookImages[book.id].length"
-        :src="IMAGE_PATH + bookImages[book.id][0].imageName"
-        alt="Book cover"
-        class="book-image"
-      />
+      <img :src="IMAGE_PATH + book.bookImages[0].imageName" alt="Book cover" class="book-image" />
       <div class="book-info">
         <h2 class="book-info-title">{{ book.name }}</h2>
         <p class="book-info-author">{{ book.author.lastName }} {{ book.author.firstName }}</p>

@@ -15,7 +15,6 @@ const IMAGE_PATH = import.meta.env.VITE_IMAGE_URL_LOCAL
 const router = useRouter()
 const route = useRoute()
 const book = ref<Book | null>(null)
-const bookImage = ref<string | null>(null)
 const errorMessage = ref<string>('')
 
 const rating = ref<number>(0)
@@ -42,12 +41,13 @@ const loadBook = async (): Promise<void> => {
   try {
     const data: Book = await fetchBookById(bookId)
     book.value = data
-
-    const images: Image[] = await fetchImagesByBookId(bookId)
-    bookImage.value = IMAGE_PATH + images[0].imageName
   } catch (error) {
     errorMessage.value = 'Impossible de charger le livre'
   }
+}
+
+const navigateToCategoryDetail = (categoryId: number): void => {
+  router.push({ name: 'CategoryDetail', params: { id: categoryId } })
 }
 
 onMounted((): void => {
@@ -55,12 +55,11 @@ onMounted((): void => {
 })
 </script>
 
-<!-- TODO: ajouter lien vers auteur et maison d'édition -->
 <template>
   <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
   <div v-if="book" class="book-detail">
     <div class="book-detail-left">
-      <img v-if="bookImage" :src="bookImage" alt="Book cover" class="book-image" />
+      <img :src="IMAGE_PATH + book.bookImages[0].imageName" alt="Book cover" class="book-image" />
       <button class="book-detail-add-to-list">Ajouter à la liste de lecture</button>
       <div class="book-detail-rate-book">
         <Star
@@ -91,10 +90,13 @@ onMounted((): void => {
       </div>
       <p class="book-detail-description">{{ book.description }}</p>
       <div class="book-detail-categories">
-        <span v-for="category in book.categories" :key="category.id" class="book-detail-category">
-          <RouterLink :to="{ name: 'CategoryDetail', query: { category: category.id } }">{{
-            category.name
-          }}</RouterLink>
+        <span
+          v-for="category in book.categories"
+          :key="category.id"
+          @click="navigateToCategoryDetail(category.id)"
+          class="book-detail-category"
+        >
+          {{ category.name }}
         </span>
       </div>
       <p class="book-detail-edition">
