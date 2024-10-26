@@ -50,6 +50,10 @@ const navigateToCategoryDetail = (categoryId: number): void => {
   router.push({ name: 'CategoryDetail', params: { id: categoryId } })
 }
 
+const navigateToAuthorDetail = (authorId: number): void => {
+  router.push({ name: 'AuthorDetail', params: { id: authorId } })
+}
+
 onMounted((): void => {
   loadBook()
 })
@@ -79,7 +83,7 @@ onMounted((): void => {
     </div>
     <div class="book-detail-right">
       <h1 class="book-detail-title">{{ book.name }}</h1>
-      <p class="book-detail-author">
+      <p @click="navigateToAuthorDetail(book.author.id)" class="book-detail-author">
         <span class="book-detail-info">Auteur</span>{{ book.author.lastName }}
         {{ book.author.firstName }}
       </p>

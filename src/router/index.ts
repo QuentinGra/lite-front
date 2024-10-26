@@ -30,6 +30,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/public/category/CategoriesView.vue')
   },
   {
+    path: '/auteur/:id',
+    name: 'AuthorDetail',
+    component: () => import('@/views/public/author/AuthorDetailView.vue')
+  },
+  {
     path: '/connexion',
     name: 'Login',
     component: () => import('@/views/auth/LoginView.vue')
