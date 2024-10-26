@@ -31,6 +31,13 @@ interface BookVariant {
   enable: boolean
 }
 
+interface BookImage {
+  imageName: string
+  createdAt: Date
+  updatedAt: Date
+  enable: boolean
+}
+
 export interface Book {
   id: number
   name: string
@@ -40,6 +47,7 @@ export interface Book {
   edition: Edition
   author: Author
   bookVariants: BookVariant[]
+  bookImages: BookImage[]
   createdAt: Date
   updatedAt: Date
   enable: boolean
