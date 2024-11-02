@@ -39,12 +39,23 @@ onMounted(() => {
 <template>
   <h1 class="book-title">Catalogue des Livres</h1>
   <div class="book-filters">
-    <input type="text" v-model="search" placeholder="Rechercher un livre..." class="book-search" />
+    <input
+      type="text"
+      v-model="search"
+      placeholder="Rechercher un livre..."
+      class="book-search"
+      aria-label="Rechercher un livre"
+    />
   </div>
   <div class="form-error" v-if="errorMessage">{{ errorMessage }}</div>
   <div class="book-grid">
     <div v-for="book in filteredBooks" :key="book.id" class="book-item">
-      <img :src="IMAGE_PATH + book.bookImages[0].imageName" alt="Book cover" class="book-image" />
+      <img
+        :src="IMAGE_PATH + book.bookImages[0].imageName"
+        alt="Book cover"
+        class="book-image"
+        loading="lazy"
+      />
       <div class="book-info">
         <h2 class="book-info-title">{{ book.name }}</h2>
         <p class="book-info-author">{{ book.author.lastName }} {{ book.author.firstName }}</p>
