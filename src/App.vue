@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import { useAuth } from '@/composables/useAuth'
 import TheHeader from '@/components/layout/TheHeader.vue'
+import TheFooter from '@/components/layout/TheFooter.vue'
 
 const { checkAuth } = useAuth()
 
@@ -15,4 +16,5 @@ onMounted(async (): Promise<void> => {
   <main>
     <RouterView />
   </main>
+  <TheFooter />
 </template>
