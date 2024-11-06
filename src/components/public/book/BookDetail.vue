@@ -2,13 +2,11 @@
 import { onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { fetchBookById } from '@/api/admin/book.api'
-import { fetchImagesByBookId } from '@/api/admin/image.api'
 import { formatDate } from '@/utils/date.utils'
 import { capitalizeFirstLetter } from '@/utils/string.utils'
 import { useAuth } from '@/composables/useAuth'
 import { Star } from 'lucide-vue-next'
 import type { Book } from '@/interfaces/admin/book.interface'
-import type { Image } from '@/interfaces/admin/image.interface'
 
 const IMAGE_PATH = import.meta.env.VITE_IMAGE_URL_LOCAL
 

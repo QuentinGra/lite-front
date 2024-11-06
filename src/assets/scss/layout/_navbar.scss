@@ -8,10 +8,12 @@
   background-color: fn.color(dark);
   color: fn.color(light);
 
-  &-brand a {
-    color: fn.color(light);
-    text-decoration: none;
-    font-size: 1.5rem;
+  &-brand {
+    &-logo {
+      width: 125px;
+      height: auto;
+      object-fit: cover;
+    }
   }
 
   &-burger {

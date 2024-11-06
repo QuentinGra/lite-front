@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useAuth } from '@/composables/useAuth'
 import { LogOut, User } from 'lucide-vue-next'
+import Logo from '@/assets/images/logo.svg'
 
 const isMenuOpen = ref<boolean>(false)
 const isDropdownOpen = ref<boolean>(false)
@@ -20,7 +21,7 @@ const toggleDropdown = (): void => {
   <header>
     <nav class="navbar">
       <div class="navbar-brand">
-        <a href="#">LOGO</a>
+        <img :src="Logo" alt="Logo" class="navbar-brand-logo" loading="lazy" />
       </div>
       <div :class="['navbar-burger', { 'is-active': isMenuOpen }]" @click="toggleMenu">
         <span></span>

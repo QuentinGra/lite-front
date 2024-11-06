@@ -2,7 +2,6 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { fetchBooks } from '@/api/admin/book.api'
-import { fetchImagesByBookId } from '@/api/admin/image.api'
 import type { Book } from '@/interfaces/admin/book.interface'
 
 const IMAGE_PATH = import.meta.env.VITE_IMAGE_URL_LOCAL
@@ -31,7 +30,7 @@ const navigateToBookDetail = (bookId: number): void => {
   router.push({ name: 'BookDetail', params: { id: bookId } })
 }
 
-onMounted(() => {
+onMounted((): void => {
   loadBooks()
 })
 </script>
