@@ -23,9 +23,7 @@ export default defineConfig({
         typographer: true
       }
     }),
-    svgLoader({
-      defaultImport: 'url'
-    })
+    svgLoader()
   ],
   resolve: {
     alias: {
