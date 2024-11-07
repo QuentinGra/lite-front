@@ -41,7 +41,6 @@
     "vite": "^5.4.9",
     "vite-plugin-mkcert": "^1.17.6",
     "vite-plugin-vue-devtools": "^7.5.2",
-    "vite-svg-loader": "^5.1.0",
     "vue-tsc": "^2.1.6"
   }
 }
