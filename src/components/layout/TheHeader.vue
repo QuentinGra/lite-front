@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useAuth } from '@/composables/useAuth'
 import { LogOut, User } from 'lucide-vue-next'
-import Logo from '@/assets/images/logo.svg'
+import Logo from '@/assets/images/logo.png'
 
 const isMenuOpen = ref<boolean>(false)
 const isDropdownOpen = ref<boolean>(false)
