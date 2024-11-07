@@ -45,6 +45,21 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/auth/RegisterView.vue')
   },
   {
+    path: '/politique-confidentialite',
+    name: 'PrivacyPolicy',
+    component: () => import('@/views/public/legal/PrivacyPolicyView.vue')
+  },
+  {
+    path: '/mentions-legales',
+    name: 'LegalNotice',
+    component: () => import('@/views/public/legal/LegalNoticeView.vue')
+  },
+  {
+    path: '/politique-cookies',
+    name: 'CookiesPolicy',
+    component: () => import('@/views/public/legal/CookiesPolicyView.vue')
+  },
+  {
     path: '/admin-panel',
     name: 'Dashboard',
     component: () => import('@/views/admin/DashboardView.vue'),

@@ -8,7 +8,7 @@ import { Linkedin } from 'lucide-vue-next'
       <div class="footer-links">
         <RouterLink to="/mentions-legales">Mentions légales</RouterLink>
         <RouterLink to="/politique-confidentialite">Politique de confidentialité</RouterLink>
-        <RouterLink to="/gestion-cookies">Cookies</RouterLink>
+        <RouterLink to="/politique-cookies">Cookies</RouterLink>
       </div>
       <div class="footer-social">
         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
