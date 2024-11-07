@@ -15,12 +15,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/public/book/BooksView.vue')
   },
   {
-    path: '/livre/:id',
+    path: '/livre/:id(\\d+)',
     name: 'BookDetail',
     component: () => import('@/views/public/book/BookDetailView.vue')
   },
   {
-    path: '/categorie/:id',
+    path: '/categorie/:id(\\d+)',
     name: 'CategoryDetail',
     component: () => import('@/views/public/category/CategoryDetailView.vue')
   },
@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/public/category/CategoriesView.vue')
   },
   {
-    path: '/auteur/:id',
+    path: '/auteur/:id(\\d+)',
     name: 'AuthorDetail',
     component: () => import('@/views/public/author/AuthorDetailView.vue')
   },
@@ -176,18 +176,18 @@ const router = createRouter({
 })
 
 // Navigation guard for authentication and role verification
-router.beforeEach(async (to, _, next) => {
+router.beforeEach(async (to, _) => {
   const { isUserDefined, hasRole, checkAuth } = useAuth()
 
   // Check if the user is defined
   await checkAuth()
 
   if (to.meta.requiresAuth && !isUserDefined.value) {
-    next({ name: 'Login' })
+    return { name: 'Login' }
   } else if (to.meta.requiresRole && !hasRole(to.meta.requiresRole as string)) {
-    next({ name: 'Home' })
+    return { name: 'Home' }
   } else {
-    next()
+    return true
   }
 })
 

@@ -55,6 +55,7 @@ const toggleDropdown = (): void => {
           <RouterLink to="/connexion" class="mobile-item">Connexion</RouterLink>
           <RouterLink to="/inscription" class="mobile-item">Inscription</RouterLink>
         </div>
+        <RouterLink v-if="isUserDefined" to="/profil">Profil</RouterLink>
         <a v-if="isUserDefined" @click="logout">
           <LogOut class="icon" :size="16" :stroke-width="2.5" /> Déconnexion
         </a>
