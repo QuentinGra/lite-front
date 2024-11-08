@@ -16,6 +16,7 @@
 @use 'layout/footer';
 
 // Pages
+@use 'pages/home';
 @use 'pages/bookList';
 @use 'pages/bookDetail';
 @use 'pages/categoryList';
