@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { fetchLatestBooks } from '@/api/admin/book.api'
 import type { Book } from '@/interfaces/admin/book.interface'
 
 const IMAGE_PATH = import.meta.env.VITE_IMAGE_URL_LOCAL
 
+const router = useRouter()
 const latestBooks = ref<Book[]>([])
 const errorMessage = ref<string>('')
 
@@ -15,6 +17,10 @@ const loadLatestBooks = async (): Promise<void> => {
   } catch (error) {
     errorMessage.value = 'Impossible de charger les livres'
   }
+}
+
+const navigateToBookDetail = (bookId: number): void => {
+  router.push({ name: 'BookDetail', params: { id: bookId } })
 }
 
 onMounted((): void => {
