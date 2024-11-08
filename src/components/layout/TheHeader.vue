@@ -26,7 +26,7 @@ const toggleDropdown = (): void => {
         <span></span>
       </div>
       <div :class="['navbar-menu', { 'is-active': isMenuOpen }]">
-        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/">Acceuil</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/">Accueil</RouterLink>
         <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/livres">Livres</RouterLink>
         <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/categories">Catégories</RouterLink>
         <div v-if="!isUserDefined" class="dropdown" :class="{ 'is-active': isDropdownOpen }">
