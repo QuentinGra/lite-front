@@ -21,6 +21,7 @@ const loadBooks = async (): Promise<void> => {
   try {
     const bookList: Book[] = await fetchBooks()
     books.value = bookList
+    console.log(books.value)
   } catch (error) {
     errorMessage.value = 'Impossible de charger les livres'
   }
@@ -50,6 +51,7 @@ onMounted((): void => {
   <div class="book-grid">
     <div v-for="book in filteredBooks" :key="book.id" class="book-item">
       <img
+        v-if="book.bookImages && book.bookImages[0]"
         :src="IMAGE_PATH + book.bookImages[0].imageName"
         alt="Book cover"
         class="book-image"
