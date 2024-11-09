@@ -35,13 +35,6 @@ const toggleDropdown = (): void => {
           </button>
           <div class="dropdown-menu">
             <div class="dropdown-content">
-              <RouterLink
-                v-if="!hasRole('ROLE_ADMIN') && isUserDefined"
-                to="/profile"
-                class="dropdown-item"
-                @click="toggleDropdown"
-                >Profile</RouterLink
-              >
               <RouterLink to="/connexion" class="dropdown-item" @click="toggleDropdown"
                 >Connexion</RouterLink
               >
@@ -55,7 +48,7 @@ const toggleDropdown = (): void => {
           <RouterLink to="/connexion" class="mobile-item">Connexion</RouterLink>
           <RouterLink to="/inscription" class="mobile-item">Inscription</RouterLink>
         </div>
-        <RouterLink v-if="isUserDefined" to="/profil">Profil</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN') && isUserDefined" to="/profil">Profil</RouterLink>
         <a v-if="isUserDefined" @click="logout">
           <LogOut class="icon" :size="16" :stroke-width="2.5" /> Déconnexion
         </a>
