@@ -1,0 +1,27 @@
+@use '../utils/function' as fn;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+
+  .modal {
+    background: fn.color(light);
+    padding: 2rem;
+    border-radius: fn.border-radius(default);
+    max-width: 400px;
+    text-align: center;
+
+    &-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+  }
+}
