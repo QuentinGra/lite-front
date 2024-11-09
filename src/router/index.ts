@@ -163,6 +163,34 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/profil',
+    name: 'Profile',
+    component: () => import('@/views/user/UserProfileView.vue'),
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: 'list',
+        name: 'ProfileList',
+        component: () => import('@/views/user/UserBookListView.vue')
+      },
+      {
+        path: 'note',
+        name: 'ProfileRate',
+        component: () => import('@/views/user/UserBookRateView.vue')
+      },
+      {
+        path: 'securite',
+        name: 'ProfileSecurity',
+        component: () => import('@/views/user/UserSecurityView.vue')
+      },
+      {
+        path: 'suppression',
+        name: 'ProfileDelete',
+        component: () => import('@/views/user/UserDeleteView.vue')
+      }
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     name: 'NotFound',
     component: () => import('@/views/common/NotFoundView.vue')
