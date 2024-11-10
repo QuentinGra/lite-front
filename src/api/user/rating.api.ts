@@ -47,3 +47,32 @@ export const updateRating = async (ratingId: number, rating: number): Promise<an
 
   return handleResponse(response)
 }
+
+export const fetchRating = async (): Promise<any> => {
+  const response = await fetch(API_URL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include'
+  })
+
+  return handleResponse(response)
+}
+
+export const deleteRating = async (ratingId: number): Promise<boolean> => {
+  const response = await fetch(`${API_URL}/${ratingId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include'
+  })
+
+  if (!response.ok) {
+    const error = await response.json()
+    throw new Error(error.message)
+  }
+
+  return true
+}
