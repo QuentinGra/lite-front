@@ -13,6 +13,8 @@ $colors: (
   light: #ffffff,
   light-border: #94929b,
   light-secondary: #e5e7eb,
+  secondary-bg: #f4f4f4,
+  grey-bg: #c4c6c9,
   dark: #161414,
   text: #161414,
   grey: #575960
@@ -40,4 +42,15 @@ $font-sizes: (
   medium: 1.25rem,
   large: 1.5rem,
   x-large: 2rem
+);
+
+// Spacing
+$spacing: (
+  sm: 1rem,
+  md: 2rem
+);
+
+// Shadows
+$shadow-color: (
+  sm: rgba(0, 0, 0, 0.1)
 );

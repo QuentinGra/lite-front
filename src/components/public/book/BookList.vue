@@ -21,7 +21,6 @@ const loadBooks = async (): Promise<void> => {
   try {
     const bookList: Book[] = await fetchBooks()
     books.value = bookList
-    console.log(books.value)
   } catch (error) {
     errorMessage.value = 'Impossible de charger les livres'
   }

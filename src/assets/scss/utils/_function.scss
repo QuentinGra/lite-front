@@ -16,3 +16,11 @@
 @function font-size($size) {
   @return map.get($font-sizes, $size);
 }
+
+@function spacing($size) {
+  @return map.get($spacing, $size);
+}
+
+@function shadow-color($size) {
+  @return map.get($shadow-color, $size);
+}

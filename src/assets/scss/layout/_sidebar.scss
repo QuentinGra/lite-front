@@ -6,7 +6,7 @@
 
   .sidebar {
     width: 250px;
-    background-color: #f4f4f4;
+    background-color: fn.color('secondary-bg');
     padding: 15px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: width 0.3s;
@@ -62,7 +62,7 @@
   }
 
   .sidebar {
-    background-color: #f4f4f4;
+    background-color: fn.color('secondary-bg');
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 4px 0 5px rgba(0, 0, 0, 0.1);
