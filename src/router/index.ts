@@ -174,6 +174,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/user/UserBookListView.vue')
       },
       {
+        path: 'list/:id(\\d+)',
+        name: 'ListDetail',
+        component: () => import('@/views/user/UserBookListDetailView.vue')
+      },
+      {
         path: 'note',
         name: 'ProfileRate',
         component: () => import('@/views/user/UserBookRateView.vue')

@@ -1,22 +1,41 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 import { fetchBookById } from '@/api/admin/book.api'
 import { formatDate } from '@/utils/date.utils'
 import { capitalizeFirstLetter } from '@/utils/string.utils'
 import { createRating, getRatingByBook, updateRating } from '@/api/user/rating.api'
+import BaseModal from '@/components/common/BaseModal.vue'
+import { fetchList } from '@/api/user/list.api'
 import { useAuth } from '@/composables/useAuth'
 import { Star } from 'lucide-vue-next'
+import { addBookToListSchema } from '@/schemas/user/bookList.schema'
+import { addBookToList } from '@/api/user/bookList.api'
 import type { Book } from '@/interfaces/admin/book.interface'
+import type { List } from '@/interfaces/user/list.interface'
 
 const IMAGE_PATH = import.meta.env.VITE_IMAGE_URL_LOCAL
+const STATUS_OPTIONS = {
+  reading: 'En cours de lecture',
+  read: 'Lu',
+  wish: 'À lire'
+} as const
 
 const router = useRouter()
 const route = useRoute()
 const authStore = useAuthStore()
+
 const book = ref<Book | null>(null)
 const errorMessage = ref<string>('')
+
+const isListModalOpen = ref<boolean>(false)
+const isLoading = ref<boolean>(false)
+
+const lists = ref<List[]>([])
+const selectedListId = ref<number | null>(null)
+
+const selectedStatus = ref<string>('wish')
 
 const rating = ref<number>(0)
 const ratingId = ref<number>(0)
@@ -105,6 +124,55 @@ const loadBook = async (): Promise<void> => {
   }
 }
 
+const loadLists = async (): Promise<void> => {
+  try {
+    lists.value = await fetchList()
+  } catch (error) {
+    errorMessage.value = 'Impossible de charger les listes'
+  }
+}
+
+const handleAddToList = async (): Promise<void> => {
+  if (!book.value) {
+    errorMessage.value = "Impossible d'ajouter le livre à la liste"
+    return
+  }
+
+  try {
+    const validatedData = addBookToListSchema.parse({
+      listId: selectedListId.value,
+      status: selectedStatus.value
+    })
+
+    isLoading.value = true
+    await addBookToList(book.value.id, validatedData.listId, validatedData.status)
+    isListModalOpen.value = false
+  } catch (error) {
+    errorMessage.value = "Impossible d'ajouter le livre à la liste"
+  } finally {
+    isLoading.value = false
+  }
+}
+
+/**
+ * Watches the `isListModalOpen` reactive property.
+ * When `isListModalOpen` becomes true, it attempts to load lists by calling `loadLists`.
+ * If an error occurs during the loading process, it sets an error message and closes the modal.
+ *
+ * @param {boolean} isOpen - Indicates whether the list modal is open.
+ * @returns {Promise<void>} - A promise that resolves when the operation is complete.
+ */
+watch(isListModalOpen, async (isOpen: boolean): Promise<void> => {
+  if (isOpen) {
+    try {
+      await loadLists()
+    } catch (error) {
+      errorMessage.value = 'Impossible de charger les listes'
+      isListModalOpen.value = false
+    }
+  }
+})
+
 const navigateToCategoryDetail = (categoryId: number): void => {
   router.push({ name: 'CategoryDetail', params: { id: categoryId } })
 }
@@ -124,7 +192,9 @@ onMounted(async (): Promise<void> => {
   <div v-if="book" class="book-detail">
     <div class="book-detail-left">
       <img :src="IMAGE_PATH + book.bookImages[0].imageName" alt="Book cover" class="book-image" />
-      <button class="book-detail-add-to-list">Ajouter à la liste de lecture</button>
+      <button class="book-detail-add-to-list" @click="isListModalOpen = true">
+        Ajouter à la liste de lecture
+      </button>
       <div class="book-detail-rate-book">
         <Star
           v-for="star in 5"
@@ -171,4 +241,32 @@ onMounted(async (): Promise<void> => {
       </p>
     </div>
   </div>
+
+  <BaseModal
+    :is-open="isListModalOpen"
+    :is-loading="isLoading"
+    :error-message="errorMessage"
+    title="Ajouter à une liste"
+    confirm-text="Ajouter"
+    @cancel="isListModalOpen = false"
+    @confirm="handleAddToList"
+  >
+    <div class="form-group">
+      <label>Choisir une liste</label>
+      <select v-model="selectedListId" class="form-select">
+        <option value="">Sélectionner une liste</option>
+        <option v-for="list in lists" :key="list.id" :value="list.id">
+          {{ list.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Statut de lecture</label>
+      <select v-model="selectedStatus" class="form-select">
+        <option v-for="(label, value) in STATUS_OPTIONS" :key="value" :value="value">
+          {{ label }}
+        </option>
+      </select>
+    </div>
+  </BaseModal>
 </template>

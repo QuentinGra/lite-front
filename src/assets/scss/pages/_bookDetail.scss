@@ -22,11 +22,12 @@
 
   &-add-to-list {
     margin: 1rem 0rem 1rem 0rem;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    padding: fn.spacing(sm);
+    background-color: fn.color(dark);
+    color: fn.color(light);
     border: none;
     border-radius: fn.border-radius(default);
+    font-size: 1.1rem;
     cursor: pointer;
   }
 
@@ -37,12 +38,12 @@
   }
 
   &-star {
-    color: #ccc;
+    color: fn.color(grey-bg);
     transition: color 0.2s;
     cursor: pointer;
 
     &-filled {
-      color: #ffcc00;
+      color: fn.color(warning);
     }
   }
 
