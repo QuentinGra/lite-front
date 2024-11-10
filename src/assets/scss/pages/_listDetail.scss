@@ -1,0 +1,45 @@
+@use '../utils/function' as fn;
+
+.list-detail-container {
+  padding: fn.spacing(sm);
+
+  .books-list {
+    display: flex;
+    flex-direction: column;
+    gap: fn.spacing(sm);
+
+    .status {
+      font-size: 1.1rem;
+    }
+
+    .delete-btn {
+      padding: 0.5rem;
+      border-radius: 4px;
+      background-color: fn.color(danger);
+      color: fn.color(light);
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.book-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: fn.spacing(md);
+  padding: fn.spacing(sm);
+  border-radius: 8px;
+  background-color: fn.color(secondary-bg);
+  box-shadow: 0 2px 4px fn.shadow-color(sm);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: fn.breakpoint(md)) {
+    grid-template-columns: 1fr;
+    gap: fn.spacing(sm);
+  }
+}

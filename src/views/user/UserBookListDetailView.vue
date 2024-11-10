@@ -2,7 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { Trash2 } from 'lucide-vue-next'
 import { useRoute } from 'vue-router'
-import { fetchListById, deleteList } from '@/api/user/list.api'
+import { fetchListById } from '@/api/user/list.api'
+import { removeBookFromList } from '@/api/user/bookList.api'
 import ConfirmModal from '@/components/common/ConfirmModal.vue'
 import type { List } from '@/interfaces/user/list.interface'
 
@@ -30,12 +31,13 @@ const loadList = async (): Promise<void> => {
   }
 }
 
-const handleDeleteList = async (): Promise<void> => {
-  if (!list.value) return
+const handleDeleteBookFromList = async (): Promise<void> => {
+  if (!selectedBookId.value || !list.value) return
 
   isLoading.value = true
   try {
-    await deleteList(list.value.id)
+    await removeBookFromList(selectedBookId.value)
+    await loadList()
     isModalOpen.value = false
   } catch (error) {
     errorMessage.value = 'Impossible de supprimer la liste'
@@ -44,8 +46,8 @@ const handleDeleteList = async (): Promise<void> => {
   }
 }
 
-const openDeleteModal = (bookId: number): void => {
-  selectedBookId.value = bookId
+const openDeleteModal = (readingListBookId: number): void => {
+  selectedBookId.value = readingListBookId
   isModalOpen.value = true
 }
 
@@ -64,7 +66,7 @@ onMounted((): void => {
         <div class="status">
           {{ item.status in STATUS_OPTIONS ? STATUS_OPTIONS[item.status as ReadingStatus] : '' }}
         </div>
-        <button class="delete-btn" @click="openDeleteModal(item.book.id)">
+        <button class="delete-btn" @click="openDeleteModal(item.id)">
           <Trash2 :size="20" />
         </button>
       </div>
@@ -77,53 +79,7 @@ onMounted((): void => {
       title="Supprimer la liste"
       message="Êtes-vous sûr de vouloir supprimer cette liste ?"
       @cancel="isModalOpen = false"
-      @confirm="handleDeleteList"
+      @confirm="handleDeleteBookFromList"
     />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.list-detail-container {
-  padding: 1rem;
-
-  .books-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    .status {
-      font-size: 1.1rem;
-    }
-
-    .delete-btn {
-      padding: 0.5rem;
-      border-radius: 4px;
-      background-color: red;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-  }
-}
-
-.book-item {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  gap: 2rem;
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: grey;
-  box-shadow: 0 2px 4px black;
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-</style>

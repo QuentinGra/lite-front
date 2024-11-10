@@ -7,6 +7,7 @@ export interface List {
 }
 
 interface readingListBooks {
+  id: number
   book: Book
   status: string
 }
