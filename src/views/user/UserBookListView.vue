@@ -6,6 +6,8 @@ import { createList, fetchList, deleteList } from '@/api/user/list.api'
 import BaseModal from '@/components/common/BaseModal.vue'
 import ConfirmModal from '@/components/common/ConfirmModal.vue'
 import type { List } from '@/interfaces/user/list.interface'
+import { createListSchema } from '@/schemas/user/list.schema'
+import { z } from 'zod'
 
 const router = useRouter()
 const lists = ref<List[]>([])
@@ -26,16 +28,20 @@ const loadLists = async (): Promise<void> => {
 }
 
 const handleCreateList = async (): Promise<void> => {
-  if (!newListName.value.trim()) return
-
-  isLoading.value = true
   try {
-    await createList(newListName.value)
+    const validatedData = createListSchema.parse({ name: newListName.value })
+
+    isLoading.value = true
+    await createList(validatedData.name)
     await loadLists()
     newListName.value = ''
     isModalOpen.value = false
   } catch (error) {
-    errorMessage.value = 'Impossible de créer la liste'
+    if (error instanceof z.ZodError) {
+      errorMessage.value = error.errors[0].message
+    } else {
+      errorMessage.value = 'Impossible de créer la liste'
+    }
   } finally {
     isLoading.value = false
   }
