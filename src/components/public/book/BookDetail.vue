@@ -42,9 +42,12 @@ const setRating = async (value: number): void => {
   rating.value = value
 
   try {
-    rating.value > 0
-      ? await updateRating(ratingId.value, rating.value)
-      : await createRating(book.value.id, authStore.user.id, rating.value)
+    if (ratingId.value) {
+      await updateRating(ratingId.value, rating.value)
+    } else {
+      const newRating = await createRating(book.value.id, authStore.user.id, rating.value)
+      ratingId.value = newRating.id
+    }
   } catch (error) {
     errorMessage.value = 'Impossible de noter le livre'
   }
