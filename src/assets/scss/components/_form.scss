@@ -36,3 +36,33 @@
     margin-bottom: 1.5rem;
   }
 }
+
+.form-input {
+  width: 100%;
+  padding: fn.spacing(sm);
+  border: 2px solid fn.color(primary);
+  border-radius: fn.border-radius(default);
+  font-size: fn.font-size(base);
+  transition: all 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: fn.color(primary);
+    box-shadow: 0 0 0 2px fn.shadow-color(sm);
+  }
+
+  &::placeholder {
+    color: fn.color(grey-bg);
+  }
+}
+
+.form-group {
+  margin-bottom: fn.spacing(md);
+
+  label {
+    display: block;
+    margin-bottom: fn.spacing(sm);
+    font-weight: 500;
+    color: #374151;
+  }
+}

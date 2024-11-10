@@ -112,3 +112,23 @@
   border: none;
   cursor: pointer;
 }
+
+.black {
+  background: fn.color(dark);
+  color: fn.color(light);
+}
+
+.create-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: fn.spacing(sm) fn.spacing(md);
+  margin-bottom: fn.spacing(md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: fn.color(light);
+  background-color: fn.color(dark);
+  border: none;
+  border-radius: fn.border-radius(default);
+  cursor: pointer;
+}

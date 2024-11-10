@@ -1,0 +1,40 @@
+@use '../utils/function' as fn;
+
+.lists-container {
+  padding: fn.spacing(sm);
+
+  .lists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: fn.spacing(sm);
+
+    .list-item {
+      padding: fn.spacing(sm);
+      background-color: fn.color(secondary-bg);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px fn.shadow-color(sm);
+      cursor: pointer;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .list-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .delete-btn {
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+}
