@@ -24,6 +24,11 @@ const hoverRating = ref<number>(0)
 
 const { isUserDefined } = useAuth()
 
+interface RatingResponse {
+  id: number
+  rating: number
+}
+
 const setHoverRating = (value: number): void => {
   hoverRating.value = value
 }
@@ -36,8 +41,16 @@ const setHoverRating = (value: number): void => {
  * @returns {void}
  * @throws Will set an error message if the rating update or creation fails.
  */
-const setRating = async (value: number): void => {
-  if (!isUserDefined.value) return router.push({ name: 'Login' })
+const setRating = async (value: number): Promise<void> => {
+  if (!isUserDefined.value) {
+    router.push({ name: 'Login' })
+    return
+  }
+
+  if (!book.value || !authStore.user) {
+    errorMessage.value = 'Une erreur est survenue'
+    return
+  }
 
   rating.value = value
 
@@ -66,14 +79,19 @@ const setRating = async (value: number): void => {
  * @returns {Promise<void>} A promise that resolves when the rating check is complete.
  */
 const checkExistingRating = async (): Promise<void> => {
-  if (!isUserDefined.value) return
+  if (!isUserDefined.value || !book.value?.id) return
 
   try {
-    const data: number = await getRatingByBook(book.value.id)
+    const data: RatingResponse = await getRatingByBook(book.value.id)
     rating.value = data?.rating ?? 0
     ratingId.value = data?.id
   } catch (error) {
-    rating.value = error.response?.status === 404 ? rating.value : 0
+    if (error && typeof error === 'object' && 'response' in error) {
+      const apiError = error as { response?: { status?: number } }
+      rating.value = apiError.response?.status === 404 ? rating.value : 0
+    } else {
+      rating.value = 0
+    }
   }
 }
 
