@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useAuthStore } from '@/stores/authStore'
 import { fetchBookById } from '@/api/admin/book.api'
 import { formatDate } from '@/utils/date.utils'
 import { capitalizeFirstLetter } from '@/utils/string.utils'
+import { createRating, getRatingByBook, updateRating } from '@/api/user/rating.api'
 import { useAuth } from '@/composables/useAuth'
 import { Star } from 'lucide-vue-next'
 import type { Book } from '@/interfaces/admin/book.interface'
@@ -12,26 +14,51 @@ const IMAGE_PATH = import.meta.env.VITE_IMAGE_URL_LOCAL
 
 const router = useRouter()
 const route = useRoute()
+const authStore = useAuthStore()
 const book = ref<Book | null>(null)
 const errorMessage = ref<string>('')
 
 const rating = ref<number>(0)
+const ratingId = ref<number>(0)
 const hoverRating = ref<number>(0)
 
 const { isUserDefined } = useAuth()
 
-const setRating = (value: number): void => {
+const setRating = async (value: number): void => {
   if (!isUserDefined.value) {
     router.push({ name: 'Login' })
     return
   }
   rating.value = value
 
-  // TODO: add in database
+  try {
+    if (rating.value > 0) {
+      await updateRating(ratingId.value, rating.value)
+    } else {
+      await createRating(book.value.id, authStore.user.id, rating.value)
+    }
+  } catch (error) {
+    errorMessage.value = 'Impossible de noter le livre'
+  }
 }
 
 const setHoverRating = (value: number): void => {
   hoverRating.value = value
+}
+
+const checkExistingRating = async (): Promise<void> => {
+  if (!isUserDefined.value) return
+
+  try {
+    const data: number = await getRatingByBook(book.value.id)
+    rating.value = data?.rating ?? 0
+    ratingId.value = data?.id
+  } catch (error) {
+    if (error.response?.status !== 404) {
+      rating.value = 0
+      return
+    }
+  }
 }
 
 const loadBook = async (): Promise<void> => {
@@ -52,8 +79,9 @@ const navigateToAuthorDetail = (authorId: number): void => {
   router.push({ name: 'AuthorDetail', params: { id: authorId } })
 }
 
-onMounted((): void => {
-  loadBook()
+onMounted(async (): Promise<void> => {
+  await loadBook()
+  await checkExistingRating()
 })
 </script>
 
