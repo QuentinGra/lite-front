@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 import { createList, fetchList, deleteList } from '@/api/user/list.api'
 import BaseModal from '@/components/common/BaseModal.vue'
 import ConfirmModal from '@/components/common/ConfirmModal.vue'
-import type { List } from '@/interfaces/list.interface'
+import type { List } from '@/interfaces/user/list.interface'
 
 const router = useRouter()
 const lists = ref<List[]>([])
@@ -75,7 +75,7 @@ onMounted((): void => {
     <div v-if="errorMessage" class="form-error">{{ errorMessage }}</div>
 
     <button class="create-btn" @click="isModalOpen = true">
-      <Plus size="24" />
+      <Plus :size="24" />
       Créer une liste
     </button>
 
@@ -89,7 +89,7 @@ onMounted((): void => {
         <div class="list-content">
           <h3>{{ list.name }}</h3>
           <button class="delete-btn" @click.stop="openDeleteModal(list.id)">
-            <Trash2 size="20" />
+            <Trash2 :size="20" />
           </button>
         </div>
       </div>

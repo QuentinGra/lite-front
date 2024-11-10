@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { Star, Trash2 } from 'lucide-vue-next'
 import { fetchRating, deleteRating } from '@/api/user/rating.api'
 import ConfirmModal from '@/components/common/ConfirmModal.vue'
-import type { Rating } from '@/interfaces/rating.interface'
+import type { Rating } from '@/interfaces/user/rating.interface'
 
 const ratings = ref<Rating[]>([])
 const errorMessage = ref<string>('')
@@ -60,7 +60,7 @@ onMounted((): void => {
           />
         </div>
         <button class="delete-btn" @click="openDeleteModal(rating.id)">
-          <Trash2 size="20" />
+          <Trash2 :size="20" />
         </button>
       </div>
     </div>
