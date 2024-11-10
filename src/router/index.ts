@@ -64,6 +64,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Dashboard',
     component: () => import('@/views/admin/DashboardView.vue'),
     meta: { requiresAuth: true, requiresRole: 'ROLE_ADMIN' },
+    redirect: { name: 'AdminBook' },
     children: [
       {
         path: 'categories',
@@ -167,6 +168,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Profile',
     component: () => import('@/views/user/UserProfileView.vue'),
     meta: { requiresAuth: true },
+    redirect: { name: 'ProfileList' },
     children: [
       {
         path: 'list',
