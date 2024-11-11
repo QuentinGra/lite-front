@@ -1,21 +1,31 @@
-// Abstracts
-@import 'abstracts/variable';
-@import 'abstracts/function';
-
 // Base
-@import 'base/reset';
-@import 'base/base';
+@use 'base/reset';
+@use 'base/base';
 
 // Components
-@import 'components/navbar';
-@import 'components/form';
-@import 'components/sidebar';
-@import 'components/button';
-@import 'components/input';
-@import 'components/table';
-@import 'components/image';
+@use 'components/form';
+@use 'components/button';
+@use 'components/input';
+@use 'components/table';
+@use 'components/image';
+@use 'components/cookie';
+@use 'components/modal';
+@use 'components/message';
 
 // Layout
-@import 'layout/layout';
+@use 'layout/layout';
+@use 'layout/sidebar';
+@use 'layout/navbar';
+@use 'layout/footer';
 
 // Pages
+@use 'pages/home';
+@use 'pages/bookList';
+@use 'pages/bookDetail';
+@use 'pages/categoryList';
+@use 'pages/categoryDetail';
+@use 'pages/security';
+@use 'pages/rating';
+@use 'pages/list';
+@use 'pages/listDetail';
+@use 'pages/notFound';

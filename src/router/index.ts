@@ -10,6 +10,31 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
+    path: '/livres',
+    name: 'Books',
+    component: () => import('@/views/public/book/BooksView.vue')
+  },
+  {
+    path: '/livre/:id(\\d+)',
+    name: 'BookDetail',
+    component: () => import('@/views/public/book/BookDetailView.vue')
+  },
+  {
+    path: '/categorie/:id(\\d+)',
+    name: 'CategoryDetail',
+    component: () => import('@/views/public/category/CategoryDetailView.vue')
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    component: () => import('@/views/public/category/CategoriesView.vue')
+  },
+  {
+    path: '/auteur/:id(\\d+)',
+    name: 'AuthorDetail',
+    component: () => import('@/views/public/author/AuthorDetailView.vue')
+  },
+  {
     path: '/connexion',
     name: 'Login',
     component: () => import('@/views/auth/LoginView.vue')
@@ -20,10 +45,26 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/auth/RegisterView.vue')
   },
   {
+    path: '/politique-confidentialite',
+    name: 'PrivacyPolicy',
+    component: () => import('@/views/public/legal/PrivacyPolicyView.vue')
+  },
+  {
+    path: '/mentions-legales',
+    name: 'LegalNotice',
+    component: () => import('@/views/public/legal/LegalNoticeView.vue')
+  },
+  {
+    path: '/politique-cookies',
+    name: 'CookiesPolicy',
+    component: () => import('@/views/public/legal/CookiesPolicyView.vue')
+  },
+  {
     path: '/admin-panel',
     name: 'Dashboard',
     component: () => import('@/views/admin/DashboardView.vue'),
     meta: { requiresAuth: true, requiresRole: 'ROLE_ADMIN' },
+    redirect: { name: 'AdminBook' },
     children: [
       {
         path: 'categories',
@@ -123,9 +164,43 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/profil',
+    name: 'Profile',
+    component: () => import('@/views/user/UserProfileView.vue'),
+    meta: { requiresAuth: true },
+    redirect: { name: 'ProfileList' },
+    children: [
+      {
+        path: 'list',
+        name: 'ProfileList',
+        component: () => import('@/views/user/UserBookListView.vue')
+      },
+      {
+        path: 'list/:id(\\d+)',
+        name: 'ListDetail',
+        component: () => import('@/views/user/UserBookListDetailView.vue')
+      },
+      {
+        path: 'note',
+        name: 'ProfileRate',
+        component: () => import('@/views/user/UserBookRateView.vue')
+      },
+      {
+        path: 'securite',
+        name: 'ProfileSecurity',
+        component: () => import('@/views/user/UserSecurityView.vue')
+      },
+      {
+        path: 'suppression',
+        name: 'ProfileDelete',
+        component: () => import('@/views/user/UserDeleteView.vue')
+      }
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     name: 'NotFound',
-    component: () => import('@/views/NotFoundView.vue')
+    component: () => import('@/views/common/NotFoundView.vue')
   }
 ]
 
@@ -136,18 +211,18 @@ const router = createRouter({
 })
 
 // Navigation guard for authentication and role verification
-router.beforeEach(async (to, _, next) => {
+router.beforeEach(async (to, _) => {
   const { isUserDefined, hasRole, checkAuth } = useAuth()
 
   // Check if the user is defined
   await checkAuth()
 
   if (to.meta.requiresAuth && !isUserDefined.value) {
-    next({ name: 'Login' })
+    return { name: 'Login' }
   } else if (to.meta.requiresRole && !hasRole(to.meta.requiresRole as string)) {
-    next({ name: 'Home' })
+    return { name: 'Home' }
   } else {
-    next()
+    return true
   }
 })
 

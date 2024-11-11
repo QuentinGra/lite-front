@@ -35,6 +35,18 @@ export const fetchBookById = async (id: number): Promise<Book> => {
   return handleResponse(response)
 }
 
+export const fetchLatestBooks = async (): Promise<Book[]> => {
+  const response = await fetch(`${API_URL}/latest`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include'
+  })
+
+  return handleResponse(response)
+}
+
 export const createBook = async (book: BookCreate): Promise<Book> => {
   const response = await fetch(`${API_URL}/create`, {
     method: 'POST',

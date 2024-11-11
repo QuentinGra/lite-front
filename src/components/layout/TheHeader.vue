@@ -20,13 +20,15 @@ const toggleDropdown = (): void => {
   <header>
     <nav class="navbar">
       <div class="navbar-brand">
-        <a href="#">LOGO</a>
+        <img src="/images/Logo.png" alt="Logo" class="navbar-brand-logo" loading="lazy" />
       </div>
       <div :class="['navbar-burger', { 'is-active': isMenuOpen }]" @click="toggleMenu">
         <span></span>
       </div>
       <div :class="['navbar-menu', { 'is-active': isMenuOpen }]">
-        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/">Acceuil</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/">Accueil</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/livres">Livres</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN')" to="/categories">Catégories</RouterLink>
         <div v-if="!isUserDefined" class="dropdown" :class="{ 'is-active': isDropdownOpen }">
           <button class="dropdown-trigger" @click="toggleDropdown">
             <User class="icon" :size="30" color="white" :stroke-width="2" />
@@ -46,6 +48,7 @@ const toggleDropdown = (): void => {
           <RouterLink to="/connexion" class="mobile-item">Connexion</RouterLink>
           <RouterLink to="/inscription" class="mobile-item">Inscription</RouterLink>
         </div>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN') && isUserDefined" to="/profil">Profil</RouterLink>
         <a v-if="isUserDefined" @click="logout">
           <LogOut class="icon" :size="16" :stroke-width="2.5" /> Déconnexion
         </a>

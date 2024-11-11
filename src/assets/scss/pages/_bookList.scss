@@ -1,0 +1,79 @@
+@use '../utils/function' as fn;
+@use '../components/card';
+
+.book {
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+
+    @media (min-width: fn.breakpoint(md)) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: fn.breakpoint(lg)) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &-title {
+    font-size: fn.font-size(large);
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  &-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &-search {
+    padding: 0.5rem;
+    border: 1px solid fn.color(dark);
+    border-radius: fn.border-radius(default);
+    font-size: fn.font-size(base);
+    flex-grow: 1;
+
+    &:focus {
+      outline: none;
+      border-color: fn.color(primary);
+    }
+  }
+
+  &-item {
+    @extend .card;
+  }
+
+  &-link {
+    @extend .card-link;
+  }
+
+  &-info {
+    @extend .card-info;
+
+    &-title {
+      @extend .card-title;
+      padding: 0 10px;
+    }
+
+    &-author {
+      @extend .card-author;
+    }
+  }
+
+  &-image {
+    @extend .card-image;
+  }
+
+  &-button {
+    @extend .card-button;
+  }
+
+  &-no-results {
+    text-align: center;
+    color: fn.color(grey-bg);
+    font-style: italic;
+    margin-top: 1rem;
+  }
+}

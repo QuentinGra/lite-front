@@ -6,43 +6,26 @@ $font-family: 'Lato', sans-serif;
 $colors: (
   info: #17a2b8,
   dark-info: #117a8b,
+  primary: #2563eb,
   danger: #dc3545,
   dark-danger: #c82333,
   warning: #ffc107,
   dark-warning: #e0a800,
   light: #ffffff,
   light-border: #94929b,
-  light-secondary: #f9f9f9,
-  dark: #1f212a,
-  text: #212121,
+  light-secondary: #e5e7eb,
+  secondary-bg: #f4f4f4,
+  grey-bg: #c4c6c9,
+  dark: #161414,
+  text: #161414,
   grey: #575960
-);
-
-$finalColors: (
-  // off-white
-  background: #fafaf9,
-  // deep brown
-  primary: #292524,
-  // medium brown
-  secondary: #57534e,
-  // muted gold
-  accent: #d97706,
-  // light beige
-  muted: #e7e5e4,
-  // admin color
-  info: #17a2b8,
-  info-dark: #117a8b,
-  danger: #dc3545,
-  danger-dark: #c82333,
-  warning: #ffc107,
-  warning-dark: #e0a800
 );
 
 // Breakpoints
 $breakpoints: (
-  sm: 576px,
+  sm: 640px,
   md: 768px,
-  lg: 992px,
+  lg: 1024px,
   xl: 1200px
 );
 
@@ -54,8 +37,22 @@ $border-radius: (
 
 // Font sizes
 $font-sizes: (
+  x-small: 0.9rem,
+  small: 0.95rem,
   base: 1rem,
   medium: 1.25rem,
   large: 1.5rem,
   x-large: 2rem
+);
+
+// Spacing
+$spacing: (
+  sm: 1rem,
+  md: 2rem
+);
+
+// Shadows
+$shadow-color: (
+  sm: rgba(0, 0, 0, 0.1),
+  md: rgba(0, 0, 0, 0.2)
 );

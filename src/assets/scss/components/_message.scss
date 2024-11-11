@@ -1,0 +1,17 @@
+.message {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+
+  &.success {
+    background-color: #ecfdf5;
+    color: #047857;
+    border: 1px solid #047857;
+  }
+  &.redirect {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    opacity: 0.8;
+  }
+}

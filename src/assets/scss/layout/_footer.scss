@@ -1,0 +1,63 @@
+@use '../utils/function' as fn;
+
+.footer {
+  background-color: fn.color(dark);
+  color: fn.color(light);
+  padding: 2rem 0;
+  margin-top: auto;
+
+  &-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+
+    @media (max-width: fn.breakpoint(md)) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+
+    @media (max-width: fn.breakpoint(md)) {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    a {
+      color: fn.color(light);
+      text-decoration: none;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &-social {
+    display: flex;
+    justify-content: flex-end;
+
+    @media (max-width: fn.breakpoint(md)) {
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .icon {
+      color: fn.color(light);
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

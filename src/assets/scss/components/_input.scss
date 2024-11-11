@@ -1,15 +1,17 @@
+@use '../utils/function' as fn;
+
 .search {
   &-label {
     display: block;
     margin-top: 1.5rem;
-    color: color(dark);
-    font-size: font-size(base);
+    color: fn.color(dark);
+    font-size: fn.font-size(base);
   }
   &-input {
     padding: 10px;
-    font-size: font-size(base);
-    border-radius: border-radius(default);
-    border: 1px solid color(light-border);
+    font-size: fn.font-size(base);
+    border-radius: fn.border-radius(default);
+    border: 1px solid fn.color(light-border);
     margin-right: 10px;
     width: 100%;
     box-sizing: border-box;
@@ -18,8 +20,8 @@
       box-shadow 0.3s;
 
     &:focus {
-      border-color: color(primary);
-      box-shadow: 0 0 5px color(dark);
+      border-color: fn.color(primary);
+      box-shadow: 0 0 5px fn.color(dark);
       outline: none;
     }
   }
@@ -28,16 +30,16 @@
 .form-file {
   display: block;
   margin-bottom: 1.5rem;
-  font-size: fon-size(base);
-  color: color(dark);
+  font-size: fn.font-size(base);
+  color: fn.color(dark);
 
   input[type='file'] {
     display: block;
     margin-top: 0.5rem;
     padding: 10px;
-    font-size: font-size(base);
-    border-radius: border-radius(default);
-    border: 1px solid color(light-border);
+    font-size: fn.font-size(base);
+    border-radius: fn.border-radius(default);
+    border: 1px solid fn.color(light-border);
     width: 100%;
     box-sizing: border-box;
     transition:
@@ -45,8 +47,8 @@
       box-shadow 0.3s;
 
     &:focus {
-      border-color: color(primary);
-      box-shadow: 0 0 5px color(dark);
+      border-color: fn.color(primary);
+      box-shadow: 0 0 5px fn.color(dark);
       outline: none;
     }
   }

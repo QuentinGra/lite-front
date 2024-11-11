@@ -1,12 +1,16 @@
-.image-thumbnail {
-  width: 150px;
-  height: auto;
-  border-radius: border-radius(default);
-  object-fit: cover;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+@use '../utils/function' as fn;
 
-  &:hover {
-    transform: scale(1.05);
+.image {
+  &-thumbnail {
+    width: 150px;
+    height: auto;
+    border-radius: fn.border-radius(default);
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
