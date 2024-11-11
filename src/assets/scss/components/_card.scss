@@ -4,7 +4,7 @@
 .card {
   background-color: #ffffff;
   border-radius: fn.border-radius(medium);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px fn.shadow-color(sm);
   overflow: hidden;
   @extend %flex-column;
   transition:
@@ -13,7 +13,7 @@
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 14px fn.shadow-color(md);
   }
 
   &-link {
@@ -48,8 +48,8 @@
   }
 
   &-button {
-    background-color: #3b82f6;
-    color: #ffffff;
+    background-color: fn.color(dark);
+    color: fn.color(light);
     font-weight: bold;
     padding: 0.75rem 1rem;
     width: 100%;
@@ -57,10 +57,6 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: fn.font-size(base);
-
-    &:hover {
-      background-color: #2563eb;
-    }
   }
 }
 

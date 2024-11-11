@@ -39,10 +39,15 @@
 
   &-search {
     padding: 0.5rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid fn.color(dark);
     border-radius: fn.border-radius(default);
     font-size: fn.font-size(base);
     flex-grow: 1;
+
+    &:focus {
+      outline: none;
+      border-color: fn.color(primary);
+    }
   }
 
   &-no-results {
@@ -66,7 +71,7 @@
     &-icon {
       width: 2rem;
       margin-right: 1rem;
-      color: #3b82f6;
+      color: fn.color(dark);
     }
 
     &-title {

@@ -61,7 +61,7 @@ onMounted((): void => {
     <div v-if="errorMessage" class="form-error">{{ errorMessage }}</div>
 
     <div class="books-list">
-      <div v-for="item in list?.readingListBooks" :key="item.book.name" class="book-item">
+      <div v-for="item in list?.readingListBooks" :key="item.book.name" class="book-item-list">
         <h3>{{ item.book.name }}</h3>
         <div class="status">
           {{ item.status in STATUS_OPTIONS ? STATUS_OPTIONS[item.status as ReadingStatus] : '' }}

@@ -30,10 +30,15 @@
 
   &-search {
     padding: 0.5rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid fn.color(dark);
     border-radius: fn.border-radius(default);
     font-size: fn.font-size(base);
     flex-grow: 1;
+
+    &:focus {
+      outline: none;
+      border-color: fn.color(primary);
+    }
   }
 
   &-item {
@@ -67,7 +72,7 @@
 
   &-no-results {
     text-align: center;
-    color: #6b7280;
+    color: fn.color(grey-bg);
     font-style: italic;
     margin-top: 1rem;
   }
