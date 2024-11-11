@@ -17,9 +17,9 @@ const state = reactive<Partial<BookVariant>>({
 const dataState = reactive({
   existingVariants: [] as BookVariant[],
   options: [
-    { value: 'brocher', label: 'Broché' },
+    { value: 'broché', label: 'Broché' },
     { value: 'poche', label: 'Poche' },
-    { value: 'relier', label: 'Relier' },
+    { value: 'relié', label: 'Relié' },
     { value: 'ebook', label: 'Livre électronique' }
   ]
 })

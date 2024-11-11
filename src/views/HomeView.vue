@@ -13,15 +13,14 @@ import BookLatest from '@/components/public/book/BookLatest.vue'
         communauté de lecteurs passionnés.
       </p>
       <p class="home-description">
-        Sur Lite, vous pouvez garder une trace de vos lectures, échanger avec d'autres passionnés et
-        trouver des recommandations personnalisées. Notre mission est de créer un espace où chaque
-        lecteur peut trouver son prochain coup de cœur littéraire et partager ses découvertes avec
-        une communauté bienveillante.
+        Sur Lite, vous pouvez garder une trace de vos lectures. Notre mission est de créer un espace
+        où chaque lecteur peut trouver son prochain coup de cœur littéraire et partager ses
+        découvertes avec une communauté bienveillante.
       </p>
       <p class="home-description">
         Rejoignez-nous dès aujourd'hui et plongez dans l'univers fascinant de la littérature avec
         Lite. Découvrez les derniers livres ajoutés, partagez vos avis et trouvez votre prochaine
-        lecture préférée.
+        lecture.
       </p>
       <div class="home-cta">
         <RouterLink to="/inscription" class="button-primary">Rejoindre la communauté</RouterLink>
