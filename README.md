@@ -1,5 +1,3 @@
-## Customize configuration
-
 ## Project Setup
 
 ```sh
@@ -16,10 +14,4 @@ pnpm dev
 
 ```sh
 pnpm build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
 ```
