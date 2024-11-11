@@ -60,6 +60,10 @@ onMounted((): void => {
   <div class="list-detail-container">
     <div v-if="errorMessage" class="form-error">{{ errorMessage }}</div>
 
+    <div v-if="list" class="list-header">
+      <h2>{{ list.name }}</h2>
+    </div>
+
     <div class="books-list">
       <div v-for="item in list?.readingListBooks" :key="item.book.name" class="book-item-list">
         <h3>{{ item.book.name }}</h3>
