@@ -19,8 +19,7 @@ import BookLatest from '@/components/public/book/BookLatest.vue'
       </p>
       <p class="home-description">
         Rejoignez-nous dès aujourd'hui et plongez dans l'univers fascinant de la littérature avec
-        Lite. Découvrez les derniers livres ajoutés, partagez vos avis et trouvez votre prochaine
-        lecture.
+        Lite. Découvrez les derniers livres ajoutés et trouvez votre prochaine lecture.
       </p>
       <div class="home-cta">
         <RouterLink to="/inscription" class="button-primary">Rejoindre la communauté</RouterLink>

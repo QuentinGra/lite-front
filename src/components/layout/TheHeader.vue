@@ -48,7 +48,7 @@ const toggleDropdown = (): void => {
           <RouterLink to="/connexion" class="mobile-item">Connexion</RouterLink>
           <RouterLink to="/inscription" class="mobile-item">Inscription</RouterLink>
         </div>
-        <RouterLink v-if="!hasRole('ROLE_ADMIN') && isUserDefined" to="/profil">Profil</RouterLink>
+        <RouterLink v-if="!hasRole('ROLE_ADMIN') && isUserDefined" to="/profil">Compte</RouterLink>
         <a v-if="isUserDefined" @click="logout">
           <LogOut class="icon" :size="16" :stroke-width="2.5" /> Déconnexion
         </a>
