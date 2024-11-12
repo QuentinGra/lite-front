@@ -1,0 +1,72 @@
+@use '../utils/function' as fn;
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: fn.color(dark);
+  color: fn.color(light);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  &-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 1rem;
+  }
+
+  &-button {
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+
+    &.accept {
+      background-color: fn.color(light);
+      border-radius: fn.border-radius(default);
+      color: fn.color(dark);
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+
+    &.refuse {
+      background-color: transparent;
+      color: fn.color(light);
+      border: 1px solid fn.color(light);
+      border-radius: fn.border-radius(default);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  // Transitions
+  &.slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  &.slide-fade-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  &.slide-fade-enter-from,
+  &.slide-fade-leave-to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}

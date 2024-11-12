@@ -1,0 +1,26 @@
+@use 'sass:map';
+@use '../utils/variable' as *;
+
+@function color($name) {
+  @return map.get($colors, $name);
+}
+
+@function breakpoint($size) {
+  @return map.get($breakpoints, $size);
+}
+
+@function border-radius($size) {
+  @return map.get($border-radius, $size);
+}
+
+@function font-size($size) {
+  @return map.get($font-sizes, $size);
+}
+
+@function spacing($size) {
+  @return map.get($spacing, $size);
+}
+
+@function shadow-color($size) {
+  @return map.get($shadow-color, $size);
+}

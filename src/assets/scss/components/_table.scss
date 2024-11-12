@@ -1,0 +1,48 @@
+@use '../utils/function' as fn;
+
+.table {
+  &-admin {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+
+    th,
+    td {
+      border-bottom: 1px solid fn.color(light-border);
+      border-right: 1px solid fn.color(light-border);
+      padding: 8px;
+    }
+
+    tr,
+    th {
+      border-top: 1px solid fn.color(light-border);
+    }
+
+    th {
+      text-align: left;
+    }
+
+    tr td:first-child,
+    tr th:first-child {
+      border-left: 1px solid fn.color(light-border);
+    }
+
+    thead th:first-child {
+      border-top-left-radius: fn.border-radius(default);
+    }
+
+    thead th:last-child {
+      border-top-right-radius: fn.border-radius(default);
+    }
+
+    tbody tr:last-child td:first-child {
+      border-bottom-left-radius: fn.border-radius(default);
+    }
+
+    tbody tr:last-child td:last-child {
+      border-bottom-right-radius: fn.border-radius(default);
+    }
+  }
+}

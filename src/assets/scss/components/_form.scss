@@ -1,0 +1,81 @@
+@use '../utils/function' as fn;
+
+.form {
+  &-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  &-error {
+    color: fn.color(danger);
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+}
+
+.formkit {
+  &-wrapper {
+    max-width: 100% !important;
+
+    button {
+      background-color: fn.color(dark) !important;
+    }
+  }
+}
+
+.variant-type {
+  margin-bottom: 1.5rem;
+}
+
+.user {
+  &-name {
+    margin-bottom: 1rem;
+  }
+  &-email {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.form-input {
+  width: 100%;
+  padding: fn.spacing(sm);
+  border: 2px solid fn.color(primary);
+  border-radius: fn.border-radius(default);
+  font-size: fn.font-size(base);
+  transition: all 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: fn.color(primary);
+    box-shadow: 0 0 0 2px fn.shadow-color(sm);
+  }
+
+  &::placeholder {
+    color: fn.color(grey-bg);
+  }
+}
+
+.form-group {
+  margin-bottom: fn.spacing(md);
+
+  label {
+    display: block;
+    margin-bottom: fn.spacing(sm);
+    font-weight: 500;
+    color: #374151;
+  }
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: fn.font-size(base);
+
+  &:focus {
+    outline: none;
+    border-color: fn.color(primary);
+  }
+}

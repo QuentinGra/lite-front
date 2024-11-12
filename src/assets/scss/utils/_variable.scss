@@ -1,0 +1,58 @@
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,300&display=swap');
+$font-family: 'Lato', sans-serif;
+
+// Colors
+$colors: (
+  info: #17a2b8,
+  dark-info: #117a8b,
+  primary: #2563eb,
+  danger: #dc3545,
+  dark-danger: #c82333,
+  warning: #ffc107,
+  dark-warning: #e0a800,
+  light: #ffffff,
+  light-border: #94929b,
+  light-secondary: #e5e7eb,
+  secondary-bg: #f4f4f4,
+  grey-bg: #c4c6c9,
+  dark: #161414,
+  text: #161414,
+  grey: #575960
+);
+
+// Breakpoints
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px
+);
+
+// Border-radius
+$border-radius: (
+  default: 0.25em,
+  medium: 0.5em
+);
+
+// Font sizes
+$font-sizes: (
+  x-small: 0.9rem,
+  small: 0.95rem,
+  base: 1rem,
+  medium: 1.25rem,
+  large: 1.5rem,
+  x-large: 2rem
+);
+
+// Spacing
+$spacing: (
+  sm: 1rem,
+  md: 2rem
+);
+
+// Shadows
+$shadow-color: (
+  sm: rgba(0, 0, 0, 0.1),
+  md: rgba(0, 0, 0, 0.2)
+);
