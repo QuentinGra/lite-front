@@ -6,7 +6,7 @@
 ## 🎓 About this project
 
 This repository is part of my end-of-year project for the Web and Mobile Web Developer diploma.  
-The project is a full stack application, including both a front-end (this repository) and a back-end ([api-book repository](https://github.com/QuentinGra/api-book)).  
+The project is a full stack application, including both a front-end (this repository) and a back-end ([lite-api repository](https://github.com/QuentinGra/lite-api)).  
 The goal was to design a modern, efficient, and maintainable web application using current best practices.
 
 ## 🚀 Overview
